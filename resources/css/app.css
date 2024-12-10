@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.font-poppins {
+    font-family: "Poppins", sans-serif;
+}
+html::-webkit-scrollbar {
+    display: none;
+}
+.bg-jar-wave-line {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='100%' height='80' preserveAspectRatio='none' viewBox='0 0 1440 80'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1055%26quot%3b)' fill='none'%3e%3cpath d='M -211.0034493724881%2c80 C -179%2c68.6 -115%2c28.2 -51.0034493724881%2c23 C 13%2c17.8 45%2c52.8 108.99655062751191%2c54 C 173%2c55.2 205%2c29 268.9965506275119%2c29 C 333%2c29 365%2c56.2 428.9965506275119%2c54 C 493%2c51.8 525%2c13.6 588.9965506275119%2c18 C 653%2c22.4 685%2c79 748.9965506275119%2c76 C 813%2c73 845%2c10 908.9965506275119%2c3 C 973%2c-4 1005%2c35.6 1068.9965506275119%2c41 C 1133%2c46.4 1165%2c26.2 1228.9965506275119%2c30 C 1293%2c33.8 1346.8%2c63.4 1388.9965506275119%2c60 C 1431.2%2c56.6 1429.8%2c22.4 1440%2c13' stroke='rgba(0%2c 162%2c 233%2c 0.07)' stroke-width='2'%3e%3c/path%3e%3cpath d='M -130.69349414819612%2c37 C -98.69%2c44.8 -34.69%2c76.4 29.306505851803877%2c76 C 93.31%2c75.6 125.31%2c38.8 189.30650585180388%2c35 C 253.31%2c31.2 285.31%2c60.6 349.3065058518039%2c57 C 413.31%2c53.4 445.31%2c14 509.3065058518039%2c17 C 573.31%2c20 605.31%2c69.4 669.3065058518039%2c72 C 733.31%2c74.6 765.31%2c32 829.3065058518039%2c30 C 893.31%2c28 925.31%2c66.8 989.3065058518039%2c62 C 1053.31%2c57.2 1085.31%2c5.8 1149.3065058518039%2c6 C 1213.31%2c6.2 1245.31%2c59 1309.3065058518039%2c63 C 1373.31%2c67 1443.17%2c24 1469.3065058518039%2c26 C 1495.45%2c28 1445.86%2c63.6 1440%2c73' stroke='rgba(0%2c 162%2c 233%2c 0.07)' stroke-width='2'%3e%3c/path%3e%3cpath d='M -9.868460522553505%2c56 C 22.13%2c50 86.13%2c22.8 150.1315394774465%2c26 C 214.13%2c29.2 246.13%2c75.6 310.1315394774465%2c72 C 374.13%2c68.4 406.13%2c6.6 470.1315394774465%2c8 C 534.13%2c9.4 566.13%2c75.6 630.1315394774465%2c79 C 694.13%2c82.4 726.13%2c25.6 790.1315394774465%2c25 C 854.13%2c24.4 886.13%2c78.6 950.1315394774465%2c76 C 1014.13%2c73.4 1046.13%2c15.8 1110.1315394774465%2c12 C 1174.13%2c8.2 1206.13%2c57.8 1270.1315394774465%2c57 C 1334.13%2c56.2 1366.13%2c5.2 1430.1315394774465%2c8 C 1494.13%2c10.8 1588.16%2c69.2 1590.1315394774465%2c71 C 1592.11%2c72.8 1470.03%2c27.8 1440%2c17' stroke='rgba(0%2c 162%2c 233%2c 0.07)' stroke-width='2'%3e%3c/path%3e%3cpath d='M -58.86623554338783%2c77 C -26.87%2c69.2 37.13%2c39.2 101.13376445661217%2c38 C 165.13%2c36.8 197.13%2c73.6 261.1337644566122%2c71 C 325.13%2c68.4 357.13%2c29 421.1337644566122%2c25 C 485.13%2c21 517.13%2c52.8 581.1337644566122%2c51 C 645.13%2c49.2 677.13%2c13.2 741.1337644566122%2c16 C 805.13%2c18.8 837.13%2c66.2 901.1337644566122%2c65 C 965.13%2c63.8 997.13%2c9.2 1061.1337644566122%2c10 C 1125.13%2c10.8 1157.13%2c70.2 1221.1337644566122%2c69 C 1285.13%2c67.8 1317.13%2c6 1381.1337644566122%2c4 C 1445.13%2c2 1529.36%2c54.8 1541.1337644566122%2c59 C 1552.91%2c63.2 1460.23%2c31.8 1440%2c25' stroke='rgba(0%2c 162%2c 233%2c 0.07)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1055'%3e%3crect width='100%' height='80' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+}
+.bg-jar-auth {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='100%' height='100%' preserveAspectRatio='none' viewBox='0 0 1280 585'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1016%26quot%3b)' fill='none'%3e%3crect width='100%' height='100%' x='0' y='0' fill='rgba(23%2c 178%2c 121%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c333.542C68.225%2c340.636%2c144.306%2c351.312%2c200.447%2c311.902C256.279%2c272.709%2c256.977%2c192.285%2c287.868%2c131.465C320.504%2c67.209%2c376.792%2c15.661%2c387.137%2c-55.662C399.402%2c-140.22%2c415.551%2c-248.146%2c351.061%2c-304.196C284.434%2c-362.103%2c179.946%2c-309.166%2c91.731%2c-312.407C28.481%2c-314.731%2c-30.852%2c-322.207%2c-94.123%2c-320.553C-180.487%2c-318.296%2c-279.325%2c-354.261%2c-347.294%2c-300.932C-414.765%2c-247.994%2c-414.745%2c-146.246%2c-424.824%2c-61.08C-434.691%2c22.29%2c-455.037%2c117.608%2c-404.787%2c184.86C-354.745%2c251.834%2c-253.813%2c244%2c-175.335%2c272.826C-116.078%2c294.592%2c-62.789%2c327.013%2c0%2c333.542' fill='%23107b54'%3e%3c/path%3e%3cpath d='M1280 1006.9110000000001C1380.024 1008.1949999999999 1479.9470000000001 1078.356 1572.19 1039.656 1666.806 999.961 1723.277 900.114 1761.511 804.898 1798.681 712.331 1809.201 609.032 1783.844 512.558 1759.916 421.522 1683.585 359.722 1625.113 285.958 1563.58 208.332 1528.143 90.97000000000003 1431.709 68.32799999999997 1334.852 45.58699999999999 1256.003 150.17200000000003 1160.138 176.786 1062.142 203.99099999999999 943.6759999999999 160.87599999999998 865.223 225.594 785.38 291.459 771.146 407.269 756.529 509.736 741.925 612.114 738.897 718.427 781.476 812.668 824.143 907.104 896.0350000000001 994.595 992.591 1032.217 1084.055 1067.855 1181.846 1005.6510000000001 1280 1006.9110000000001' fill='%2325e39d'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1016'%3e%3crect width='1280' height='100%' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+}
+
+#scrollToTop.show {
+    opacity: 1;
+    visibility: visible;
+}
+#scrollToTop {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #086c4c;
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 0px 4px rgba(23, 178, 121, 0.3);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    position: relative;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.svgIcon {
+    width: 12px;
+    transition-duration: 0.3s;
+}
+
+.svgIcon path {
+    fill: white;
+}
+
+#scrollToTop:hover {
+    width: 140px;
+    border-radius: 50px;
+    transition-duration: 0.3s;
+    background-color: #086c4c;
+    align-items: center;
+}
+
+#scrollToTop:hover .svgIcon {
+    /* width: 20px; */
+    transition-duration: 0.3s;
+    transform: translateY(-200%);
+}
+
+#scrollToTop::before {
+    position: absolute;
+    bottom: -20px;
+    content: "Kembali ke Atas";
+    color: white;
+    transition-duration: 0.3s;
+    font-size: 0px;
+}
+
+#scrollToTop:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    bottom: unset;
+    transition-duration: 0.3s;
+}
+.invisible-scrollbar::-webkit-scrollbar {
+    display: none;
+}
