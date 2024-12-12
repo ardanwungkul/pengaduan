@@ -28,7 +28,15 @@ class KategoriInstansiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kategori_id' => 'required',
+            'nama' => 'required|unique:kategori_instansis'
+        ]);
+        $instansi = new KategoriInstansi();
+        $instansi->kategori_id = $request->kategori_id;
+        $instansi->nama = $request->nama;
+        $instansi->save();
+        return redirect()->back()->with(['success' => 'Berhasil Menambahkan Kategori Instansi']);
     }
 
     /**
@@ -58,8 +66,9 @@ class KategoriInstansiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(KategoriInstansi $kategoriInstansi)
+    public function destroy(KategoriInstansi $kategori_instansi)
     {
-        //
+        $kategori_instansi->delete();
+        return redirect()->back()->with(['success' => 'Berhasil Menambahkan Kategori Instansi']);
     }
 }

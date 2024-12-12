@@ -23,8 +23,9 @@ return new class extends Migration
             $table->date('tanggal_kejadian');
             $table->string('lokasi_kejadian');
             $table->string('dokumen');
-            $table->string('status');
-            $table->date('tanggal_status');
+            $table->longText('keterangan_ditolak')->nullable();
+            $table->string('status')->default('Belum Di Proses');
+            $table->dateTime('tanggal_status')->nullable();
             $table->unsignedBigInteger('kategori_id')->nullable();
             $table->foreign('kategori_id')->references('id')->on('kategori_pelapors')->onUpdate('cascade')->onDelete('set null');
             $table->unsignedBigInteger('jenis_id')->nullable();

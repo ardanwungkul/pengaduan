@@ -19,7 +19,38 @@
             <div class="flex items-center gap-5">
                 <a href="{{ route('login') }}" class="py-1 text-white tracking-widest text-sm hover:border-b">Lacak
                     Pengaduan</a>
-                <a href="{{ route('login') }}" class="py-1 text-white tracking-widest text-sm hover:border-b">Login</a>
+                @if (Auth::user())
+                    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                        class="py-1 text-white tracking-widest text-sm hover:border-b flex items-center gap-1"
+                        type="button">
+                        <p>Hii, Ardan!! </p><svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button>
+
+                    <div id="dropdown"
+                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow min-w-44 dark:bg-gray-700">
+                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                            aria-labelledby="dropdownDefaultButton">
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                this.closest('form').submit();"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                        <span class="ml-2 text-sm tracking-wide truncate">Logout</span>
+                                    </a>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                @else
+                    <a href="{{ route('login') }}"
+                        class="py-1 text-white tracking-widest text-sm hover:border-b">Login</a>
+                @endif
             </div>
 
 

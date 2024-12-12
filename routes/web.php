@@ -1,9 +1,15 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JenisPengaduanController;
+use App\Http\Controllers\KategoriInstansiController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Models\JenisPengaduan;
+use App\Models\KategoriInstansi;
+use App\Models\KategoriPelapor;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +33,17 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
 });
 Route::middleware(['auth', 'role:superadmin,admin'])->group(function () {
     Route::get('admin/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('admin/pengaduan', [PengaduanController::class, 'index'])->name('pengaduan.index');
+    Route::post('admin/status-pengaduan', [PengaduanController::class, 'changeStatus'])->name('pengaduan.status');
+    Route::get('admin/pengaturan', function () {
+        $jenis = JenisPengaduan::all();
+        $kategori = KategoriPelapor::all();
+        $instansi = KategoriInstansi::all();
+        return view('master.pengaturan.index', compact('jenis', 'instansi', 'kategori'));
+    })->name('pengaturan.index');
+    Route::post('admin/kategori-instansi', [KategoriInstansiController::class, 'store'])->name('kategori-instansi.store');
+    Route::delete('admin/kategori-instansi/{kategori_instansi}', [KategoriInstansiController::class, 'destroy'])->name('kategori-instansi.destroy');
+    Route::resource('admin/jenis-pengaduan', JenisPengaduanController::class);
 });
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -34,6 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('buat-laporan', [LaporanController::class, 'create'])->name('laporan.create');
+Route::get('buat-laporan', [PengaduanController::class, 'create'])->name('laporan.create');
+Route::post('buat-laporan', [PengaduanController::class, 'store'])->name('laporan.store');
 
 require __DIR__ . '/auth.php';

@@ -28,7 +28,13 @@ class JenisPengaduanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_jenis' => 'required|unique:jenis_pengaduans'
+        ]);
+        $jenis = new JenisPengaduan();
+        $jenis->nama_jenis = $request->nama_jenis;
+        $jenis->save();
+        return redirect()->back()->with(['success' => 'Berhasil Menambahkan Jenis Pengaduan']);
     }
 
     /**
@@ -60,6 +66,7 @@ class JenisPengaduanController extends Controller
      */
     public function destroy(JenisPengaduan $jenisPengaduan)
     {
-        //
+        $jenisPengaduan->delete();
+        return redirect()->back()->with(['success' => 'Berhasil Menghapus Jenis Pengaduan']);
     }
 }

@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class KategoriPelapor extends Model
 {
     use HasFactory;
+    public function instansi()
+    {
+        return $this->hasMany(KategoriInstansi::class);
+    }
 }
