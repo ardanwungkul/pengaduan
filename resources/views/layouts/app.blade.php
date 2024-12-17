@@ -24,8 +24,8 @@
         <x-sidebar />
         <div class="pl-64">
             <main class="p-10">
-                <div class="fixed bottom-5 right-5">
-                    @if (count($errors) > 0)
+                @if (count($errors) > 0)
+                    <div class="fixed bottom-5 right-5">
                         @foreach ($errors->all() as $error)
                             <div id="toast-error-{{ $loop->index }}"
                                 class="flex items-center gap-2 w-min p-4 text-gray-500 bg-white rounded-lg shadow border border-red-500"
@@ -60,12 +60,42 @@
                                 </button>
                             </div>
                         @endforeach
-                    @endif
-                </div>
+                    </div>
+                @endif
+                @if (session('success'))
+                    <div class="fixed top-5 right-5 z-20">
+                        <div id="toast-success"
+                            class="flex items-center gap-2 w-min p-4 text-gray-500 bg-white rounded-lg shadow border border-green-500"
+                            role="alert">
+                            <div
+                                class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 bg-green-300 rounded-lg">
+                                <svg viewBox="0 0 24 24" class="w-4 h-4 stroke-green-500 fill-none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 12.6111L8.92308 17.5L20 6.5" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="sr-only">Fire icon</span>
+                            </div>
+                            <div class="ms-3 text-sm font-normal whitespace-nowrap">{{ session('success') }}
+                            </div>
+                            <button type="button"
+                                class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8"
+                                data-dismiss-target="#toast-success" aria-label="Close">
+                                <span class="sr-only">Close</span>
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                @endif
                 @if (isset($header))
                     <header class="bg-white shadow-lg rounded-lg border border-gray-300 mb-4">
                         <div class="p-6">
                             <div class="flex justify-between items-center">
+                                {{-- <a href="{{ url()->previous() }}" class="btn btn-default">Back</a> --}}
                                 <p class="font-semibold text-xl text-gray-800 leading-none">
                                     {{ $header }}
                                 </p>

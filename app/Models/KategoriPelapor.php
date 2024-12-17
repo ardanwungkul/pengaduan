@@ -10,6 +10,6 @@ class KategoriPelapor extends Model
     use HasFactory;
     public function instansi()
     {
-        return $this->hasMany(KategoriInstansi::class);
+        return $this->hasMany(KategoriInstansi::class, 'kategori_id');
     }
 }

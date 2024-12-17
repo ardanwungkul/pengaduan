@@ -1,7 +1,7 @@
 @props(['pengaduan'])
 <div id="show-detail-{{ $pengaduan->id }}" tabindex="-1" aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-2xl max-h-full">
+    <div class="relative p-4 w-full max-w-3xl max-h-full">
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow">
             <!-- Modal header -->
@@ -10,18 +10,27 @@
                     <p class="text-xl font-semibold text-gray-900">
                         Detil Pengaduan
                     </p>
-                    <p>No Pendaftaran: {{ $pengaduan->nomor_pendaftaran }}</p>
+                    <p>No: {{ $pengaduan->nomor_pendaftaran }}</p>
                 </div>
-                <button type="button"
-                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                    data-modal-hide="show-detail-{{ $pengaduan->id }}">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
+                <div class="flex gap-4 items-center justify-center">
+                    <p
+                        class="{{ $pengaduan->status == 'Diterima' || $pengaduan->status == 'Ditindak Lanjuti Ke Penelitian'
+                            ? 'text-green-500'
+                            : ($pengaduan->status == 'Ditolak'
+                                ? 'text-red-500'
+                                : 'text-gray-500') }}">
+                        {{ $pengaduan->status }}</p>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="show-detail-{{ $pengaduan->id }}">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
             </div>
             <!-- Modal body -->
             <div class="p-4 space-y-4">
@@ -31,26 +40,27 @@
                         <div class="flex flex-col gap-1 items-start">
                             <p>Nama Lengkap</p>
                             <input type="text" disabled value="{{ $pengaduan->nama }}"
-                                class="text-xs w-full rounded-lg shadow-lg">
+                                class="text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
                         <div class="flex flex-col gap-1 items-start">
                             <p>Email</p>
                             <input type="text" disabled value="{{ $pengaduan->email }}"
-                                class="text-xs w-full rounded-lg shadow-lg">
+                                class="text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
                         <div class="flex flex-col gap-1 items-start">
                             <p>Nomor Hp</p>
                             <input type="text" disabled value="{{ $pengaduan->telepon }}"
-                                class="text-xs w-full rounded-lg shadow-lg">
+                                class="text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
                         <div class="flex flex-col gap-1 items-start">
                             <p>Kategori Pelapor</p>
-                            <input type="text" disabled value="{{ $pengaduan->kategori->nama_kategori }}"
-                                class="text-xs w-full rounded-lg shadow-lg">
+                            <input type="text" disabled
+                                value="{{ $pengaduan->kategori->nama_kategori }} {{ $pengaduan->instansi ? '(' . $pengaduan->instansi->nama . ')' : '' }}"
+                                class="text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
                         <div class="flex flex-col gap-1 items-start col-span-2">
                             <p>Alamat</p>
-                            <textarea disabled class="text-xs w-full rounded-lg shadow-lg">{{ $pengaduan->alamat }}</textarea>
+                            <textarea disabled class="text-xs w-full rounded-lg shadow-lg border-gray-300">{{ $pengaduan->alamat }}</textarea>
                         </div>
                         <div class="col-span-2 flex justify-center">
                             <a href="/storage/images/{{ $pengaduan->nomor_pendaftaran }}/{{ $pengaduan->ktp }}"
@@ -79,25 +89,42 @@
                     <legend class="px-3">Laporan</legend>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="flex flex-col gap-1 items-start col-span-2">
+                            <p>Jenis Pengaduan</p>
+                            <input type="text" disabled
+                                value="{{ $pengaduan->jenis_pengaduan ? $pengaduan->jenis_pengaduan->nama_jenis : null }}"
+                                class="text-xs w-full rounded-lg shadow-lg border-gray-300 capitalize">
+                        </div>
+                        <div class="flex flex-col gap-1 items-start col-span-2">
                             <p>Lokasi Kejadian</p>
                             <input type="text" disabled value="{{ $pengaduan->lokasi_kejadian }}"
-                                class="text-xs w-full rounded-lg shadow-lg">
+                                class="text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
                         <div class="flex flex-col gap-1 items-start">
                             <p>Tanggal Kejadian</p>
                             <input type="date" disabled value="{{ $pengaduan->tanggal_kejadian }}"
-                                class="text-xs w-full rounded-lg shadow-lg">
+                                class="text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
                         <div class="flex flex-col gap-1 items-start">
                             <p>Tanggal Pelaporan</p>
                             <input type="text" disabled value="{{ $pengaduan->tanggal_kejadian }}"
-                                class="text-xs w-full rounded-lg shadow-lg">
+                                class="text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
 
                         <div class="flex flex-col gap-1 items-start col-span-2">
                             <p>Kronologi</p>
-                            <textarea disabled class="text-xs w-full rounded-lg shadow-lg">{{ $pengaduan->kronologi }}</textarea>
+                            <textarea disabled class="text-xs w-full rounded-lg shadow-lg border-gray-300">{{ $pengaduan->kronologi }}</textarea>
                         </div>
+                        <div class="flex flex-col gap-1 items-start col-span-2">
+                            <p>Status</p>
+                            <input type="text" disabled value="{{ $pengaduan->status }}"
+                                class="text-xs w-full rounded-lg shadow-lg border-gray-300">
+                        </div>
+                        @if ($pengaduan->status == 'Ditolak')
+                            <div class="flex flex-col gap-1 items-start col-span-2">
+                                <p>Keterangan Ditolak</p>
+                                <textarea disabled class="text-xs w-full rounded-lg shadow-lg border-gray-300">{{ $pengaduan->keterangan_ditolak }}</textarea>
+                            </div>
+                        @endif
                         <div class="col-span-2 flex justify-center">
                             <a href="/storage/images/{{ $pengaduan->nomor_pendaftaran }}/{{ $pengaduan->dokumen }}"
                                 target="blank"
@@ -132,6 +159,23 @@
                             data-modal-toggle="tolak-pengaduan-{{ $pengaduan->id }}" type="button"
                             class="w-full bg-red-500 rounded-lg shadow-lg text-white py-2 hover:bg-opacity-90 border border-gray-300">
                             Tolak
+                        </button>
+                    </div>
+                @elseif($pengaduan->status == 'Diterima')
+                    <div class="flex gap-4 w-full">
+                        <form action="{{ route('pengaduan.status') }}" method="POST" class="w-full">
+                            @csrf
+                            @method('POST')
+                            <input type="hidden" name="status" value="Ditindak Lanjuti Ke Penelitian">
+                            <input type="hidden" name="pengaduan_id" value="{{ $pengaduan->id }}">
+                            <button type="submit"
+                                class="w-full bg-green-500 rounded-lg shadow-lg text-white py-2 hover:bg-opacity-90 border border-gray-300">
+                                Tindak Lanjut
+                            </button>
+                        </form>
+                        <button data-modal-hide="show-detail-{{ $pengaduan->id }}" type="button"
+                            class="w-full bg-red-500 rounded-lg shadow-lg text-white py-2 hover:bg-opacity-90 border border-gray-300">
+                            Batal
                         </button>
                     </div>
                 @endif

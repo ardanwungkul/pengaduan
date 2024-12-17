@@ -2,10 +2,18 @@ import "./bootstrap";
 import { initFlowbite } from "flowbite";
 import Alpine from "alpinejs";
 import DataTable from "datatables.net-dt";
+import jszip from "jszip";
+import pdfmake from "pdfmake";
+import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import "datatables.net-dt/css/dataTables.dataTables.min.css";
+import "datatables.net-buttons-dt";
+import "datatables.net-buttons-dt/css/buttons.dataTables.min.css";
+import "datatables.net-buttons/js/buttons.colVis.mjs";
+import "datatables.net-buttons/js/buttons.html5.mjs";
+import "datatables.net-buttons/js/buttons.print.mjs";
 import jquery from "jquery";
 window.$ = jquery;
-
+window.JSZip = jszip;
 window.Alpine = Alpine;
 
 Alpine.start();

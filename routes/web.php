@@ -26,7 +26,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-
+Route::get('buat-pengaduan', [PengaduanController::class, 'create'])->name('laporan.create');
+Route::get('lacak-pengaduan', [PengaduanController::class, 'track'])->name('laporan.track');
+Route::post('lacak-pengaduan', [PengaduanController::class, 'trackSearch'])->name('laporan.track.search');
+Route::post('buat-pengaduan', [PengaduanController::class, 'store'])->name('laporan.store');
 
 Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::resource('admin/users', UserController::class);
@@ -50,8 +53,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-Route::get('buat-laporan', [PengaduanController::class, 'create'])->name('laporan.create');
-Route::post('buat-laporan', [PengaduanController::class, 'store'])->name('laporan.store');
 
 require __DIR__ . '/auth.php';

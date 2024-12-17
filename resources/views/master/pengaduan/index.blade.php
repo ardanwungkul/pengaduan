@@ -8,24 +8,50 @@
                 <table id="table" class="w-full">
                     <thead class="bg-gray-200">
                         <tr class="text-xs">
-                            <th class="!font-semibold text-center">Nomor Pendaftaran</th>
-                            <th class="!font-semibold text-center">Kategori</th>
-                            <th class="!font-semibold text-center">Nama Pelapor</th>
-                            <th class="!font-semibold text-center">Tanggal dan Lokasi Kejadian</th>
-                            <th class="!font-semibold text-center">Status</th>
-                            <th class="!font-semibold text-center">Keterangan</th>
-                            <th class="!font-semibold text-center">Aksi</th>
+                            <th class="!font-semibold">Nomor dan Tanggal Pengaduan</th>
+                            <th class="!font-semibold">Kategori</th>
+                            <th class="!font-semibold">Jenis Pengaduan</th>
+                            <th class="!font-semibold">Nama Pelapor</th>
+                            <th class="!font-semibold">Alamat</th>
+                            <th class="!font-semibold">Email/Telp</th>
+                            <th class="!font-semibold">Tanggal dan Lokasi Kejadian</th>
+                            <th class="!font-semibold">Status</th>
+                            <th class="!font-semibold">Keterangan</th>
+                            <th class="!font-semibold">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="text-xs">
                         @foreach ($pengaduan as $item)
                             <tr class="text-xs">
-                                <td>{{ $item->nomor_pendaftaran }}</td>
-                                <td>{{ $item->kategori->nama_kategori }}</td>
+                                <td>
+                                    <div>
+                                        <button type="button"
+                                            class="font-medium cursor-pointer flex gap-1 items-center justify-between group w-full">
+                                            <p class="flex-grow">{{ $item->nomor_pendaftaran }}</p>
+                                        </button>
+                                        <p class="text-gray-600">{{ $item->created_at->format('d M Y H:i') }}</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <p>
+                                            {{ $item->kategori->nama_kategori }}
+                                        </p>
+                                        <p class="text-gray-500">
+                                            {{ $item->instansi ? '(' . $item->instansi->nama . ')' : null }}
+                                        </p>
+                                    </div>
+                                </td>
+                                <td>{{ $item->jenis_pengaduan ? $item->jenis_pengaduan->nama_jenis : '' }}</td>
                                 <td>{{ $item->nama }}</td>
+                                <td class="!text-start">{{ $item->alamat }}</td>
+                                <td class="!text-start">
+                                    <p>{{ $item->email }}</p>
+                                    <p>{{ $item->telepon }}</p>
+                                </td>
                                 <td>
                                     <p>
-                                        {{ $item->tanggal_kejadian }}
+                                        {{ \Carbon\Carbon::parse($item->tanggal_kejadian)->format('d M Y') }}
                                     </p>
                                     <p>
                                         {{ $item->lokasi_kejadian }}
@@ -33,7 +59,7 @@
                                 </td>
                                 <td>
                                     <p
-                                        class="{{ $item->status == 'Diterima' ? 'text-green-500' : ($item->status == 'Ditolak' ? 'text-red-500' : '') }}">
+                                        class="{{ $item->status == 'Diterima' || $item->status == 'Ditindak Lanjuti Ke Penelitian' ? 'text-green-500' : ($item->status == 'Ditolak' ? 'text-red-500' : '') }}">
                                         {{ $item->status }}</p>
                                     <p class="text-xs text-gray-500">{{ $item->tanggal_status }}</p>
                                 </td>
@@ -67,7 +93,9 @@
                                         <p class="whitespace-nowrap">Lihat Detail</p>
                                     </button>
                                     <x-modal.show-detail-pengaduan :pengaduan="$item" />
-                                    <x-modal.tolak-pengaduan :pengaduan="$item" />
+                                    @if ($item->status == 'Belum Di Proses')
+                                        <x-modal.tolak-pengaduan :pengaduan="$item" />
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -89,13 +117,79 @@
             },
             columnDefs: [{
                     className: "dt-center",
-                    targets: [0, 1, 2, 3, 4, 5, 6]
+                    targets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                 },
                 {
                     orderable: false,
-                    targets: [5, 6]
+                    targets: [0, 4, 5, 6, 9]
+                },
+                {
+                    visible: false,
+                    targets: [2, 4, 5, 8]
                 }
-            ]
+            ],
+            order: [],
+            dom: 'Bfrtip',
+            buttons: [{
+                extend: 'pdfHtml5',
+                text: 'Export Pdf',
+                title: 'Daftar Pengaduan Masuk',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+                },
+                orientation: 'landscape',
+                pageSize: 'A4',
+                customize: function(doc) {
+                    doc.pageMargins = [30, 30, 30, 30];
+                    doc.defaultStyle.fontSize = 9;
+
+                    doc.styles.tableHeader = {
+                        color: 'black',
+                        bold: true,
+                        fillColor: '#ddd',
+                        fontSize: 9,
+                        verticalAlignment: 'middle',
+                        alignment: 'center'
+                    };
+                    doc.styles.tableBodyOdd = {
+                        fontSize: 9
+                    };
+                }
+                // customize: function(doc) {
+                //     var objLayout = {};
+                //     objLayout['hLineWidth'] = function() {
+                //         return 0.8;
+                //     };
+                //     objLayout['vLineWidth'] = function() {
+                //         return 0.8;
+                //     };
+                //     objLayout['hLineColor'] = function() {
+                //         return '#cccccc';
+                //     };
+                //     objLayout['vLineColor'] = function() {
+                //         return '#cccccc';
+                //     };
+                //     objLayout['paddingLeft'] = function() {
+                //         return 5;
+                //     };
+                //     objLayout['paddingRight'] = function() {
+                //         return 5;
+                //     };
+                //     objLayout['paddingTop'] = function() {
+                //         return 5;
+                //     };
+                //     objLayout['paddingBottom'] = function() {
+                //         return 5;
+                //     };
+
+                //     doc.content[1].layout = objLayout;
+                //     doc.content[1].table.body.forEach(function(row) {
+                //         row.forEach(function(cell) {
+                //             cell.verticalAlign = 'middle';
+                //         });
+                //     });
+                // }
+            }]
         });
     });
 </script>

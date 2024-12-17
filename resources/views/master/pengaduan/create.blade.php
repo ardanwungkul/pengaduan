@@ -5,6 +5,7 @@
             <p class="text-xs text-gray-500">Harap lengkapi identitas Anda, sertakan detail pengaduan, dan lampirkan
                 bukti pendukung. Pengaduan anonim tidak akan diproses.</p>
             <form action="{{ route('laporan.store') }}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="user_id" value="{{ Auth::user() ? Auth::user()->id : null }}">
                 @csrf
                 @method('POST')
                 <fieldset
@@ -20,7 +21,24 @@
                             @endforeach
                         </select>
                     </div>
-                    <input type="hidden" name="user_id" value="{{ Auth::user() ? Auth::user()->id : null }}">
+                    @foreach ($kategori_pelapor as $item)
+                        @if ($item->instansi->count() > 0)
+                            <div class="hidden kategori_instansi col-span-2" data-id="{{ $item->id }}">
+                                <div class="flex flex-col gap-1">
+                                    <label for="kategori_instansi_id_{{ $item->id }}">Kategori Instansi</label>
+                                    <select name="kategori_instansi_id_{{ $item->id }}"
+                                        id="kategori_instansi_id_{{ $item->id }}"
+                                        class="rounded-lg shadow-lg text-sm border border-gray-300">
+                                        <option value="" selected disabled>Pilih kategori Instansi</option>
+                                        @foreach ($item->instansi as $instansi)
+                                            <option value="{{ $instansi->id }}">{{ $instansi->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+
                     <div class="flex flex-col gap-1">
                         <label for="nama">Nama Lengkap</label>
                         <input type="text" name="nama" id="nama" required placeholder="Masukkan Nama Lengkap"
@@ -54,6 +72,19 @@
                 <fieldset
                     class="grid grid-cols-2 mt-10 w-full text-sm gap-4 border pt-5 border-dashed shadow p-5 rounded-lg bg-gray-50">
                     <legend align="center" class="px-5 bg-white font-semibold">Laporan</legend>
+                    @if ($jenis_pengaduan->count() > 0)
+                        <div class="flex flex-col gap-1 col-span-2">
+                            <label for="jenis_pengaduan_id">Jenis Pengaduan</label>
+                            <select name="jenis_pengaduan_id" id="jenis_pengaduan_id"
+                                class="rounded-lg shadow-lg text-sm border border-gray-300">
+                                <option value="" selected disabled>Pilih Jenis Pengaduan</option>
+                                @foreach ($jenis_pengaduan as $item)
+                                    <option value="{{ $item->id }}" class="capitalize">{{ $item->nama_jenis }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    @endif
                     <div class="flex flex-col gap-1 col-span-2">
                         <label for="lokasi_kejadian">Lokasi Kejadian</label>
                         <input type="text" name="lokasi_kejadian" id="lokasi_kejadian" required
@@ -84,3 +115,12 @@
         </div>
     </div>
 </x-guest-layout>
+<script type="module">
+    $(document).ready(function() {
+        $('#kategori_id').on('change', function() {
+            var selectedKategoriId = $(this).val();
+            $('.kategori_instansi').addClass('hidden');
+            $('.kategori_instansi[data-id="' + selectedKategoriId + '"]').removeClass('hidden');
+        });
+    });
+</script>

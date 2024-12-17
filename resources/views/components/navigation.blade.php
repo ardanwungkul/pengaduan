@@ -17,14 +17,16 @@
             </div>
 
             <div class="flex items-center gap-5">
-                <a href="{{ route('login') }}" class="py-1 text-white tracking-widest text-sm hover:border-b">Lacak
+                <a href="{{ route('laporan.track') }}"
+                    class="py-1 text-white tracking-widest text-sm hover:border-b">Lacak
                     Pengaduan</a>
                 @if (Auth::user())
                     <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
                         class="py-1 text-white tracking-widest text-sm hover:border-b flex items-center gap-1"
                         type="button">
-                        <p>Hii, Ardan!! </p><svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <p>Hii, {{ Auth::user()->name }}!! </p>
+                        <svg class="w-2.5 h-2.5 ms-3 fill-none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m1 1 4 4 4-4" />
                         </svg>

@@ -1,36 +1,7 @@
 <x-guest-layout>
-    <div class="h-[calc(100vh-80px)] !bg-gradient-to-b from-watercouse-100 to-watercouse-50 rounded-b-3xl">
-        <div class="grid grid-cols-2 max-w-6xl mx-auto h-full ">
-            {{-- <div class="flex flex-col items-center justify-center gap-2 px-5">
-                <p class="text-center text-xl font-semibold">Anda mengetahui dugaan Korupsi, Penyalahgunaan Wewenang,
-                    Pelanggaran Kode
-                    Etik/Disiplin, Perbuatan Asusila dan Pelanggaran Hukum Lainnya oleh ASN ?</p>
-                <p class="text-center font-medium text-xl bg-watercouse-700 text-white rounded-lg px-3 py-2">Laporkan
-                    pada
-                    Kami !!</p>
-                <p class="text-center font-semibold text-watercouse-700">Mari wujudkan Kabupaten Paser
-                </p>
-                <p class="text-white bg-watercouse-700 rounded-lg px-2 py-1">
-                    Bersih dari Korupsi, Berintegritas dan Patuh dengan Hukum
-                </p>
-                <a href=""
-                    class="!mt-10 border-2 border-watercouse-700 rounded-lg text-watercouse-700 font-medium px-5 py-1 text-3xl hover:bg-watercouse-700 hover:text-white transition-all duration-500">Lapor
-                    Sekarang!</a>
-            </div> --}}
-            {{-- <div class="flex flex-col justify-center gap-2 px-5">
-                <p class="text-3xl font-semibold">Apakah Anda mengetahu pelanggaran ASN seperti korupsi, penyalahgunaan
-                    wewenang, atau lainnya?
-                </p>
-                <p class="text-watercouse-700 text-sm font-light">Mari wujudkan Kabupaten Paser
-                    <span class="font-extrabold py-1">
-                        Bersih dari Korupsi, Berintegritas dan Patuh dengan Hukum
-                    </span>
-                </p>
-                <a href="{{ route('laporan.create') }}"
-                    class="!mt-5 border-2 border-watercouse-700 rounded-lg text-watercouse-700 font-semibold px-5 py-1 text-xl hover:bg-watercouse-700 hover:text-white transition-all duration-500 w-min whitespace-nowrap">Lapor
-                    Sekarang!</a>
-            </div> --}}
-            <div class="flex flex-col justify-center gap-2 px-5">
+    <div class="h-[calc(100vh-80px)] !bg-gradient-to-b from-watercouse-200 to-watercouse-50 rounded-b-3xl relative">
+        <div class="grid md:grid-cols-2 grid-cols-1 max-w-6xl mx-auto h-full px-5 md:px-0">
+            <div class="flex flex-col justify-center gap-2 px-5 relative z-10">
                 <p class="text-3xl font-semibold">Laporkan dugaan korupsi, penyalahgunaan wewenang, pelanggaran kode
                     etik/disiplin, asusila, atau pelanggaran hukum lainnya oleh ASN!
                 </p>
@@ -43,45 +14,250 @@
                     class="!mt-5 border-2 border-watercouse-700 rounded-lg text-watercouse-700 font-semibold px-5 py-1 text-xl hover:bg-watercouse-700 hover:text-white transition-all duration-500 w-min whitespace-nowrap">Lapor
                     Sekarang!</a>
             </div>
-            <div class="flex items-center justify-center">
+            <div
+                class="flex items-center justify-center absolute md:relative top-0 w-full h-full z-0 opacity-20 md:opacity-100">
                 <img src="{{ asset('assets/images/hero-bg.png') }}" alt="">
             </div>
         </div>
     </div>
-    <div class="  bg-gradient-to-b from-watercouse-50 to-white mt-10 p-5">
-        <div class="flex flex-col items-center justify-center max-w-6xl mx-auto pb-10">
-            <dotlottie-wc src="https://lottie.host/4a028cea-11e9-49f3-aa97-f11ea2fab444/3TqaqxNJbX.lottie" autoplay
-                speed="0.5" loop></dotlottie-wc>
-            <p class="text-center text-2xl font-semibold border-b pb-1">Perlindungan Bagi Pelapor</p>
-            <p class="max-w-3xl text-center">Jika Anda memiliki informasi atau bukti terkait pelanggaran yang dilakukan
-                oleh ASN, silakan laporkan kepada kami. Kami menjamin kerahasiaan identitas pelapor, selama pelapor
-                tidak mengungkapkan laporan tersebut secara publik.</p>
-
+    <div class="bg-gradient-to-b from-watercouse-50 to-white mt-10 p-5 h-screen flex items-center">
+        <div class="grid grid-cols-3 gap-5 max-w-6xl mx-auto">
+            <div class="flex">
+                <div
+                    class="flex flex-col items-center justify-center max-w-6xl mx-auto gap-10 bg-watercouse-500 rounded-xl py-3 shadow-lg">
+                    <dotlottie-wc src="https://lottie.host/4a028cea-11e9-49f3-aa97-f11ea2fab444/3TqaqxNJbX.lottie"
+                        autoplay speed="0.5" loop></dotlottie-wc>
+                    <div class="flex flex-col">
+                        <p class="text-center text-2xl font-semibold pb-1 text-white">Perlindungan Bagi Pelapor
+                        </p>
+                        <p class="max-w-3xl text-center text-sm text-gray-100 p-3 pb-0">
+                            Laporkan pelanggaran ASN kepada kami dengan jaminan kerahasiaan identitas Anda, selama
+                            laporan
+                            tidak
+                            disebarkan secara publik.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-2 px-3 bg-watercouse-100 rounded-xl p-5 flex items-center justify-center shadow-lg">
+                <div>
+                    <p class="text-center text-2xl font-semibold border-b pb-1 max-w-3xl mx-auto">Bentuk-bentuk
+                        Pelanggaran
+                        yang bisa Anda laporkan
+                    </p>
+                    <div
+                        class="grid grid-cols-4 max-w-6xl mx-auto px-5 pt-5 text-center gap-y-5 gap-x-3 place-items-start place-content-center">
+                        <div class="flex justify-center items-center flex-col gap-2 w-full">
+                            <div
+                                class="rounded-full flex items-center justify-center aspect-square p-5 shadow-lg bg-watercouse-500 border-2 border-watercouse-400">
+                                <svg viewBox="0 0 24 24" class="fill-none stroke-white w-8 h-8"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path
+                                            d="M2 14C2 10.2288 2 8.34315 3.17157 7.17157C4.34315 6 6.22876 6 10 6H14C17.7712 6 19.6569 6 20.8284 7.17157C22 8.34315 22 10.2288 22 14C22 17.7712 22 19.6569 20.8284 20.8284C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14Z"
+                                            stroke-width="1.5"></path>
+                                        <path
+                                            d="M16 6C16 4.11438 16 3.17157 15.4142 2.58579C14.8284 2 13.8856 2 12 2C10.1144 2 9.17157 2 8.58579 2.58579C8 3.17157 8 4.11438 8 6"
+                                            stroke-width="1.5"></path>
+                                        <path
+                                            d="M12 17.3333C13.1046 17.3333 14 16.5871 14 15.6667C14 14.7462 13.1046 14 12 14C10.8954 14 10 13.2538 10 12.3333C10 11.4129 10.8954 10.6667 12 10.6667M12 17.3333C10.8954 17.3333 10 16.5871 10 15.6667M12 17.3333V18M12 10V10.6667M12 10.6667C13.1046 10.6667 14 11.4129 14 12.3333"
+                                            stroke-width="1.5" stroke-linecap="round"></path>
+                                    </g>
+                                </svg>
+                            </div>
+                            <p class="font-medium">Tindak Pidana Korupsi dan Gratifikasi</p>
+                        </div>
+                        <div class="flex justify-center items-center flex-col gap-2 w-full">
+                            <div
+                                class="rounded-full flex items-center justify-center aspect-square p-5 shadow-lg bg-watercouse-500 border-2 border-watercouse-400">
+                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                    class="fill-white w-8 h-8" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    viewBox="0 0 472.273 472.273" xml:space="preserve">
+                                    <g id="SVGRepo_iconCarrier">
+                                        <g>
+                                            <g>
+                                                <path
+                                                    d="M100.396,422.721L85.16,469.137h301.953l-15.236-46.416H100.396L100.396,422.721z M147.766,460.542H98.174l9.594-29.226 h69.223C167.25,441.058,157.508,450.8,147.766,460.542z">
+                                                </path>
+                                                <path
+                                                    d="M235.278,142.505c-66.461,0-120.338,53.877-120.338,120.338v147.844h242.396V262.844 c0-66.461-53.877-120.338-120.338-120.338L235.278,142.505L235.278,142.505z M334.126,266.282c0,5.696-4.619,10.314-10.314,10.314 c-5.696,0-10.314-4.619-10.314-10.314c0-41.708-33.933-75.641-75.642-75.641h-1.719c-5.696,0-10.314-4.619-10.314-10.314 c0-5.697,4.618-10.315,10.314-10.315h1.719C290.939,170.011,334.126,213.198,334.126,266.282z">
+                                                </path>
+                                                <path
+                                                    d="M95.576,214.582c2.13-10.618-4.748-20.951-15.363-23.082l-56.746-11.388c-10.617-2.129-20.949,4.749-23.08,15.364 c-0.463,2.311-0.5,4.606-0.166,6.807c1.204,7.917,7.224,14.606,15.529,16.273l56.745,11.388 C83.112,232.075,93.446,225.197,95.576,214.582z">
+                                                </path>
+                                                <path
+                                                    d="M82.562,83.1l36.149,45.199c6.762,8.455,19.101,9.828,27.556,3.066c8.457-6.763,9.826-19.1,3.066-27.557l-36.148-45.199 c-6.764-8.455-19.1-9.828-27.557-3.066c-5.673,4.537-8.157,11.581-7.138,18.28C78.992,77.111,80.336,80.316,82.562,83.1z">
+                                                </path>
+                                                <path
+                                                    d="M238.59,100.202c10.824,0.254,19.806-8.315,20.061-19.14l-0.139-57.858c0.257-10.822-8.312-19.808-19.139-20.062 c-10.824-0.254-19.806,8.315-20.061,19.138l0.138,57.86c-0.029,1.169,0.048,2.315,0.219,3.434 C221.074,92.803,228.934,99.974,238.59,100.202z">
+                                                </path>
+                                                <path
+                                                    d="M329.344,135.673c8.128,7.152,20.517,6.363,27.67-1.766l38.235-43.447c7.151-8.129,6.361-20.516-1.768-27.671 c-8.127-7.153-20.516-6.362-27.669,1.766l-38.234,43.448c-3.986,4.528-5.506,10.38-4.664,15.912 C323.583,128.31,325.745,132.505,329.344,135.673z">
+                                                </path>
+                                                <path
+                                                    d="M472.048,206.575c-1.63-10.704-11.627-18.062-22.333-16.432l-57.216,8.707c-10.705,1.628-18.063,11.627-16.435,22.331 c1.63,10.705,11.628,18.062,22.333,16.434l57.216-8.706C466.318,227.279,473.676,217.281,472.048,206.575z">
+                                                </path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                            <p class="font-medium">Penyalahgunaan Wewenang ASN</p>
+                        </div>
+                        <div class="flex justify-center items-center flex-col gap-2 w-full">
+                            <div
+                                class="rounded-full flex items-center justify-center aspect-square p-5 shadow-lg bg-watercouse-500 border-2 border-watercouse-400">
+                                <svg viewBox="0 0 24 24" class="fill-none stroke-white w-8 h-8"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path
+                                            d="M20.5393 19.0413C20.3893 19.1913 20.1993 19.2613 20.0093 19.2613C19.8193 19.2613 19.6293 19.1913 19.4793 19.0413L14.5293 14.0913L15.0593 13.5613L15.5893 13.0312L20.5393 17.9812C20.8293 18.2712 20.8293 18.7513 20.5393 19.0413Z">
+                                        </path>
+                                        <path
+                                            d="M6.46937 9.27814L12.2694 15.0781C12.6594 15.4681 12.6594 16.0981 12.2694 16.4881L11.3694 17.3981C10.5594 18.1981 9.27938 18.1981 8.47937 17.3981L4.13938 13.0581C3.34938 12.2681 3.34938 10.9781 4.13938 10.1781L5.04938 9.26814C5.43938 8.88814 6.07937 8.88814 6.46937 9.27814Z">
+                                        </path>
+                                        <path
+                                            d="M18.5898 10.1897L14.7798 13.9897C14.3798 14.3897 13.7398 14.3897 13.3398 13.9897L7.55977 8.20969C7.15977 7.80969 7.15977 7.16969 7.55977 6.76969L11.3698 2.95969C12.1598 2.16969 13.4498 2.16969 14.2498 2.95969L18.5898 7.29969C19.3798 8.09969 19.3798 9.37969 18.5898 10.1897Z">
+                                        </path>
+                                        <path
+                                            d="M8 21.75H2C1.59 21.75 1.25 21.41 1.25 21C1.25 20.59 1.59 20.25 2 20.25H8C8.41 20.25 8.75 20.59 8.75 21C8.75 21.41 8.41 21.75 8 21.75Z">
+                                        </path>
+                                    </g>
+                                </svg>
+                            </div>
+                            <p class="font-medium">Pelanggaran Etika ASN</p>
+                        </div>
+                        <div class="flex justify-center items-center flex-col gap-2 w-full">
+                            <div
+                                class="rounded-full flex items-center justify-center aspect-square p-5 shadow-lg bg-watercouse-500 border-2 border-watercouse-400">
+                                <svg viewBox="0 0 64 64" class="fill-white w-8 h-8" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                    class="iconify iconify--emojione-monotone" preserveAspectRatio="xMidYMid meet"
+                                    fill="#000000">
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path
+                                            d="M2 56h60l-4.979-39.857c-.037-3.346.048-5.199.048-5.199c-.776.239-1.931.331-3.314.331c-.234 0-.479-.004-.728-.009c-.005-2.089.039-3.266.039-3.266c-1.201 1.58-3.765 1.982-6.688 1.982c-3.035 0-6.456-.433-9.144-.433c-4.147 0-5.033 2.775-5.225 3.968c-.192-1.198-1.082-3.961-5.22-3.961c-2.688 0-6.107.433-9.141.433c-2.926 0-5.49-.402-6.691-1.984c0 0 .044 1.176.038 3.26c-.247.004-.493.009-.728.009c-1.385 0-2.537-.092-3.313-.331c0 0 .081 1.771.05 4.986L2 56m51.755-42.863c.505 0 .968-.012 1.393-.035c-.052 5.433.179 20.275 3.489 39.48a45.058 45.058 0 0 1-1.833-.333c.392-.163.703-.385.913-.684c-3.794-16.071-4.557-30.928-4.671-38.438c.24.005.479.01.709.01m-16.131-1.026c2.031 0 4.749.239 7.624.492c2.008.177 4.059.355 5.93.455c.115 7.395.846 21.905 4.407 37.608c-.269.045-.642.08-1.156.08c-1.9 0-4.622-.483-7.254-.951c-2.964-.526-6.028-1.071-8.528-1.071c-1.938 0-3.464.364-4.667.921c-.046.019-.099.033-.142.053l-.007-35.011c.035-.494.383-2.576 3.793-2.576m-24.776.947c1.871-.1 3.92-.278 5.927-.455c2.876-.252 5.594-.492 7.627-.492c3.299 0 3.74 1.928 3.791 2.617l-.009 34.969c-.079-.035-.173-.063-.256-.096c-1.188-.529-2.674-.875-4.555-.875c-2.5 0-5.564.546-8.527 1.072c-2.634.469-5.355.952-7.255.952c-.514 0-.888-.035-1.153-.079c3.562-15.705 4.293-30.22 4.41-37.613m-3.971.044c.426.023.888.035 1.393.035c.23 0 .47-.005.71-.009c-.115 7.508-.879 22.369-4.675 38.443c.209.297.517.519.904.681c-.621.124-1.232.237-1.826.331c3.313-19.206 3.545-34.048 3.494-39.481">
+                                        </path>
+                                        <path
+                                            d="M25.197 13.916c2.566 0 3.412.582 3.421.588l.238-.312l.243-.305c-.099-.074-1.049-.736-3.875-.736c-2.127 0-4.753.539-7.083 1.013c-1.698.348-3.169.649-4.011.649l-.069.778c.927 0 2.441-.311 4.19-.671c2.3-.471 4.894-1.004 6.946-1.004">
+                                        </path>
+                                        <path
+                                            d="M25.063 17.836c2.616 0 3.481.605 3.489.611l.242-.322l.248-.318c-.101-.081-1.069-.768-3.951-.768c-2.169 0-4.847.558-7.223 1.055c-1.733.359-3.233.673-4.091.673l-.073.811c.946 0 2.489-.324 4.274-.696c2.344-.491 4.993-1.046 7.085-1.046">
+                                        </path>
+                                        <path
+                                            d="M24.924 21.916c2.669 0 3.549.627 3.559.635l.247-.336l.254-.329c-.104-.084-1.093-.799-4.032-.799c-2.212 0-4.944.581-7.369 1.097c-1.769.375-3.301.702-4.175.702l-.077.842c.966 0 2.542-.336 4.362-.724c2.393-.513 5.095-1.088 7.231-1.088">
+                                        </path>
+                                        <path
+                                            d="M24.777 26.162c2.723 0 3.622.656 3.633.662l.252-.349l.258-.346c-.105-.085-1.114-.831-4.112-.831c-2.258 0-5.048.605-7.523 1.144c-1.806.391-3.368.729-4.263.729l-.078.88c.984 0 2.596-.351 4.454-.756c2.444-.533 5.2-1.133 7.379-1.133">
+                                        </path>
+                                        <path
+                                            d="M24.626 30.587c2.78 0 3.699.684 3.707.691l.26-.365l.264-.36c-.109-.089-1.138-.865-4.2-.865c-2.304 0-5.153.63-7.681 1.19c-1.846.407-3.441.762-4.355.762l-.081.917c1.005 0 2.649-.366 4.549-.79c2.495-.555 5.309-1.18 7.537-1.18">
+                                        </path>
+                                        <path
+                                            d="M24.467 35.202c2.84 0 3.778.712 3.787.72l.264-.38l.271-.375c-.11-.093-1.161-.903-4.288-.903c-2.354 0-5.266.658-7.848 1.242c-1.887.426-3.518.795-4.451.795l-.085.955c1.028 0 2.71-.381 4.65-.821c2.55-.581 5.427-1.233 7.7-1.233">
+                                        </path>
+                                        <path
+                                            d="M24.303 40.02c2.902 0 3.859.746 3.869.754l.27-.398l.275-.392c-.112-.098-1.186-.943-4.382-.943c-2.405 0-5.38.688-8.021 1.296c-1.927.445-3.596.832-4.548.832l-.09 1c1.051 0 2.77-.4 4.754-.861c2.608-.606 5.549-1.288 7.873-1.288">
+                                        </path>
+                                        <path
+                                            d="M24.128 45.055c2.97 0 3.947.777 3.957.785l.276-.416l.283-.408c-.116-.102-1.212-.986-4.479-.986c-2.46 0-5.503.718-8.204 1.356c-1.971.466-3.678.866-4.652.866l-.093 1.046c1.073 0 2.831-.416 4.861-.897c2.669-.633 5.677-1.346 8.051-1.346">
+                                        </path>
+                                        <path
+                                            d="M35.406 14.504c.008-.006.854-.588 3.42-.588c2.054 0 4.647.533 6.946 1.004c1.749.36 3.263.671 4.189.671l-.069-.778c-.842 0-2.313-.301-4.011-.649c-2.328-.474-4.955-1.013-7.082-1.013c-2.824 0-3.776.662-3.876.736l.244.305l.239.312">
+                                        </path>
+                                        <path
+                                            d="M38.934 17.04c-2.883 0-3.852.687-3.951.768l.248.318l.241.322c.009-.005.873-.611 3.49-.611c2.092 0 4.739.554 7.083 1.045c1.784.373 3.328.696 4.274.696l-.073-.811c-.856 0-2.357-.313-4.09-.673c-2.375-.496-5.053-1.054-7.222-1.054">
+                                        </path>
+                                        <path
+                                            d="M39.072 21.087c-2.939 0-3.928.715-4.031.799l.253.329l.247.336c.009-.007.891-.635 3.559-.635c2.137 0 4.836.575 7.23 1.087c1.82.388 3.397.724 4.361.724l-.075-.842c-.875 0-2.406-.327-4.176-.702c-2.422-.516-5.156-1.096-7.368-1.096">
+                                        </path>
+                                        <path
+                                            d="M39.216 25.298c-3 0-4.009.745-4.112.831l.257.346l.253.349c.01-.006.908-.662 3.632-.662c2.18 0 4.937.6 7.382 1.132c1.858.405 3.468.756 4.453.756L51 27.171c-.894 0-2.456-.338-4.262-.729c-2.474-.539-5.264-1.144-7.522-1.144">
+                                        </path>
+                                        <path
+                                            d="M39.365 29.688c-3.063 0-4.09.776-4.197.865l.264.36l.257.365c.011-.007.927-.691 3.709-.691c2.226 0 5.042.625 7.536 1.18c1.9.424 3.545.79 4.551.79l-.082-.917c-.914 0-2.51-.355-4.354-.762c-2.528-.56-5.377-1.19-7.684-1.19">
+                                        </path>
+                                        <path
+                                            d="M39.521 34.264c-3.127 0-4.177.811-4.288.903l.271.375l.264.38c.008-.008.946-.72 3.786-.72c2.272 0 5.15.652 7.701 1.232c1.94.44 3.621.821 4.649.821l-.086-.955c-.932 0-2.563-.369-4.447-.795c-2.583-.583-5.494-1.241-7.85-1.241">
+                                        </path>
+                                        <path
+                                            d="M39.687 39.04c-3.196 0-4.269.846-4.382.943l.274.392l.271.398c.009-.008.967-.754 3.87-.754c2.323 0 5.265.683 7.872 1.287c1.984.461 3.704.861 4.754.861l-.091-1c-.953 0-2.621-.387-4.546-.832c-2.642-.607-5.617-1.295-8.022-1.295">
+                                        </path>
+                                        <path
+                                            d="M39.857 44.029c-3.268 0-4.365.885-4.48.986l.281.408l.276.416c.011-.008.99-.785 3.957-.785c2.377 0 5.385.713 8.052 1.346c2.029.481 3.788.897 4.863.897l-.095-1.046c-.974 0-2.681-.4-4.651-.866c-2.701-.638-5.745-1.356-8.203-1.356">
+                                        </path>
+                                    </g>
+                                </svg>
+                            </div>
+                            <p class="font-medium">Sumpah Jabatan dan Disiplin ASN</p>
+                        </div>
+                        <div class="flex justify-center items-center flex-col gap-2 w-full">
+                            <div
+                                class="rounded-full flex items-center justify-center aspect-square p-5 shadow-lg bg-watercouse-500 border-2 border-watercouse-400">
+                                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                    class="fill-white w-8 h-8" preserveAspectRatio="xMidYMid meet" fill="#000000">
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path
+                                            d="M32 2C15.432 2 2 15.432 2 32.001C2 48.567 15.432 62 32 62s30-13.433 30-29.999C62 15.432 48.568 2 32 2zm22 30.001c0 4.629-1.433 8.922-3.876 12.465l-30.591-30.59A21.889 21.889 0 0 1 32 10c12.15 0 22 9.851 22 22.001zm-44 0a21.9 21.9 0 0 1 3.876-12.468l30.591 30.591A21.887 21.887 0 0 1 32 54.001c-12.15 0-22-9.852-22-22z">
+                                        </path>
+                                    </g>
+                                </svg>
+                            </div>
+                            <p class="font-medium">Perbuatan Tercela ASN</p>
+                        </div>
+                        <div class="flex justify-center items-center flex-col gap-2 w-full">
+                            <div
+                                class="rounded-full flex items-center justify-center aspect-square p-5 shadow-lg bg-watercouse-500 border-2 border-watercouse-400">
+                                <svg class="fill-white w-8 h-8" version="1.1" id="Capa_1"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    viewBox="0 0 26 26" xml:space="preserve">
+                                    <g id="SVGRepo_iconCarrier">
+                                        <g>
+                                            <path
+                                                d="M19,24.968v1H7v-1c0-0.551,0.449-1,1-1h2.013c0.053-1.248,0.863-2.29,1.987-2.689V9.554 c-0.527-0.333-0.88-0.917-0.88-1.587H12h2h0.88c0,0.67-0.353,1.254-0.88,1.587v11.724c1.124,0.399,1.934,1.441,1.987,2.689H18 C18.551,23.968,19,24.417,19,24.968z M26,15.967c-0.733,2.064-2.685,3.553-5,3.553s-4.267-1.49-5-3.553h1.154l3.378-8.953 c0.146-0.39,0.789-0.39,0.936,0l3.378,8.953H26z M23.777,15.967L21,8.608l-2.777,7.36H23.777z M5,5.978 c0.453,0,0.822-0.303,0.95-0.714c0.331-0.126,0.67-0.296,1.018-0.472C7.733,4.406,8.6,3.967,9.5,3.967 c0.864,0,1.404,0.399,1.713,0.739c-0.012,0.086-0.026,0.172-0.026,0.261c0,1.001,0.812,1.813,1.813,1.813s1.813-0.812,1.813-1.813 c0-0.089-0.014-0.174-0.026-0.26c0.308-0.339,0.848-0.74,1.713-0.74c0.9,0,1.767,0.438,2.531,0.824 c0.349,0.176,0.688,0.346,1.019,0.472c0.128,0.411,0.497,0.714,0.95,0.714c0.558,0,1.01-0.452,1.01-1.01s-0.452-1.01-1.01-1.01 c-0.288,0-0.545,0.124-0.729,0.318c-0.247-0.104-0.514-0.237-0.789-0.376c-0.864-0.437-1.843-0.932-2.982-0.932 c-0.996,0-1.69,0.379-2.161,0.787c-0.211-0.233-0.481-0.407-0.788-0.506c0.373-0.2,0.635-0.581,0.635-1.032 C14.186,1.561,13,0.032,13,0.032s-1.186,1.529-1.186,2.184c0,0.452,0.262,0.832,0.635,1.032c-0.307,0.098-0.577,0.273-0.788,0.506 C11.19,3.346,10.496,2.967,9.5,2.967c-1.139,0-2.119,0.495-2.983,0.932C6.242,4.039,5.976,4.172,5.729,4.275 C5.545,4.082,5.288,3.957,5,3.957c-0.558,0-1.01,0.452-1.01,1.01S4.442,5.978,5,5.978z M5,19.521c-2.315,0-4.267-1.49-5-3.553 h1.154l3.378-8.953c0.146-0.39,0.789-0.39,0.936,0l3.378,8.953H10C9.267,18.031,7.315,19.521,5,19.521z M7.777,15.967L5,8.608 l-2.777,7.36H7.777z">
+                                            </path>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                            <p class="font-medium">Pelanggaran Hukum ASN</p>
+                        </div>
+                        <div class="flex justify-center items-center flex-col gap-2 w-full">
+                            <div
+                                class="rounded-full flex items-center justify-center aspect-square p-5 shadow-lg bg-watercouse-500 border-2 border-watercouse-400">
+                                <svg viewBox="0 0 24 24" class="fill-none stroke-white w-8 h-8"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path
+                                            d="M7.2 21C6.07989 21 5.51984 21 5.09202 20.782C4.71569 20.5903 4.40973 20.2843 4.21799 19.908C4 19.4802 4 18.9201 4 17.8V6.2C4 5.07989 4 4.51984 4.21799 4.09202C4.40973 3.71569 4.71569 3.40973 5.09202 3.21799C5.51984 3 6.0799 3 7.2 3H16.8C17.9201 3 18.4802 3 18.908 3.21799C19.2843 3.40973 19.5903 3.71569 19.782 4.09202C20 4.51984 20 5.0799 20 6.2V7M8 7H14M8 15H9M8 11H12M11.1954 20.8945L12.5102 20.6347C13.2197 20.4945 13.5744 20.4244 13.9052 20.2952C14.1988 20.1806 14.4778 20.0317 14.7365 19.8516C15.0279 19.6486 15.2836 19.393 15.7949 18.8816L20.9434 13.7332C21.6306 13.0459 21.6306 11.9316 20.9434 11.2444C20.2561 10.5571 19.1418 10.5571 18.4546 11.2444L13.2182 16.4808C12.739 16.96 12.4994 17.1996 12.3059 17.4712C12.1341 17.7123 11.9896 17.9717 11.8751 18.2447C11.7461 18.5522 11.6686 18.882 11.5135 19.5417L11.1954 20.8945Z"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </g>
+                                </svg>
+                            </div>
+                            <p class="font-medium">Maladministrasi Layanan Publik</p>
+                        </div>
+                        <div class="flex justify-center items-center flex-col gap-2 w-full">
+                            <div
+                                class="rounded-full flex items-center justify-center aspect-square p-5 shadow-lg bg-watercouse-500 border-2 border-watercouse-400">
+                                <svg viewBox="0 0 24 24" class="fill-white w-8 h-8"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M8.98569 3.47641C7.9721 2.04283 5.94388 1.80096 4.7177 3.0919L3.1481 4.7444C2.61224 5.30855 2.20497 6.09224 2.25401 7.00591C2.35326 8.85513 3.13844 12.64 7.27161 16.9915C11.701 21.6548 15.9261 21.8893 17.75 21.7092C18.497 21.6355 19.1016 21.2371 19.545 20.7703L20.9655 19.2747C22.2705 17.9008 21.8904 15.6016 20.2575 14.6617L18.347 13.5621C17.2485 12.9298 15.8862 13.111 15.0124 14.031L14.6038 14.4612C14.5748 14.4714 14.484 14.4959 14.3103 14.4677C13.9078 14.4023 13.0391 14.0469 11.607 12.5392C10.1793 11.0361 9.82765 10.1104 9.7609 9.65489C9.7287 9.43513 9.76142 9.31935 9.77436 9.28299L9.7765 9.27719L10.0214 9.0194C10.9889 8.00073 11.0574 6.40656 10.2467 5.25989L8.98569 3.47641ZM5.80528 4.12493C6.32812 3.57449 7.24855 3.61773 7.7609 4.34237L9.02189 6.12586C9.44403 6.72292 9.3793 7.51731 8.93376 7.98637L8.64695 8.28834L9.17861 8.79333C8.64694 8.28835 8.64625 8.28907 8.64556 8.2898L8.64415 8.2913L8.64125 8.29441L8.63514 8.30104L8.62182 8.31603C8.61246 8.32678 8.60219 8.33909 8.5912 8.35298C8.56922 8.38075 8.54435 8.41489 8.51826 8.45566C8.46594 8.53742 8.40921 8.64508 8.36116 8.78011C8.26346 9.05468 8.21022 9.41827 8.27675 9.87234C8.40746 10.7645 8.99202 11.9642 10.5194 13.5722C12.0422 15.1755 13.1924 15.8058 14.0699 15.9483C14.5201 16.0214 14.8846 15.963 15.1606 15.8541C15.2955 15.8009 15.4023 15.7384 15.4824 15.6816C15.5223 15.6533 15.5556 15.6264 15.5825 15.6028C15.5959 15.591 15.6078 15.5801 15.6181 15.5701L15.6324 15.556L15.6388 15.5495L15.6417 15.5464L15.6432 15.545C15.6438 15.5442 15.6445 15.5435 15.1174 15.0428L15.6446 15.5435L16.1 15.064C16.4854 14.6582 17.086 14.567 17.5987 14.8621L19.5092 15.9618C20.3301 16.4342 20.4907 17.5965 19.8779 18.2417L18.4574 19.7373C18.1783 20.031 17.8864 20.1885 17.6026 20.2165C16.1676 20.3581 12.4234 20.2373 8.35919 15.9584C4.48307 11.8776 3.83289 8.43533 3.75185 6.92552C3.73042 6.52621 3.90429 6.12632 4.23568 5.77743L5.80528 4.12493Z">
+                                        </path>
+                                        <path
+                                            d="M16.5304 3.46945C16.2375 3.17655 15.7626 3.17655 15.4697 3.46945C15.1768 3.76234 15.1768 4.23721 15.4697 4.53011L16.9394 5.99978L15.4697 7.46945C15.1768 7.76234 15.1768 8.23721 15.4697 8.53011C15.7626 8.823 16.2375 8.823 16.5304 8.53011L18 7.06044L19.4697 8.53009C19.7626 8.82298 20.2374 8.82298 20.5303 8.53009C20.8232 8.2372 20.8232 7.76232 20.5303 7.46943L19.0607 5.99978L20.5304 4.53012C20.8232 4.23723 20.8232 3.76236 20.5304 3.46946C20.2375 3.17657 19.7626 3.17657 19.4697 3.46946L18 4.93912L16.5304 3.46945Z">
+                                        </path>
+                                    </g>
+                                </svg>
+                            </div>
+                            <p class="font-medium">Pelayanan Publik yang Buruk</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="fixed bottom-5 right-5">
-        <button id="scrollToTop"> <svg class="svgIcon" viewBox="0 0 384 512">
-                <path
-                    d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z">
-                </path>
-            </svg></button>
-    </div>
+
+
 </x-guest-layout>
-<script>
-    const scrollToTopButton = document.getElementById('scrollToTop');
-
-    scrollToTopButton.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            scrollToTopButton.classList.add('show');
-        } else {
-            scrollToTopButton.classList.remove('show');
-        }
-    });
-</script>

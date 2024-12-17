@@ -16,8 +16,11 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "datatables.net-buttons-dt": "^3.2.0",
         "datatables.net-dt": "^2.1.8",
         "flowbite": "^2.5.2",
-        "jquery": "^3.7.1"
+        "jquery": "^3.7.1",
+        "jszip": "^3.10.1",
+        "pdfmake": "^0.2.16"
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisPengaduan;
 use App\Models\KategoriPelapor;
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
@@ -16,16 +17,31 @@ class PengaduanController extends Controller
     {
         if ($request->filter) {
             if ($request->filter == 'diterima') {
-                $pengaduan = Pengaduan::where('status', 'Diterima')->get();
+                $pengaduan = Pengaduan::whereIn('status', ['Diterima', 'Ditindak Lanjuti Ke Penelitian'])
+                    ->orderBy('created_at', 'desc')
+                    ->get();
             } elseif ($request->filter == 'ditolak') {
-                $pengaduan = Pengaduan::where('status', 'Ditolak')->get();
+                $pengaduan = Pengaduan::where('status', 'Ditolak')->orderBy('created_at', 'desc')->get();
             } else {
-                $pengaduan = Pengaduan::all();
+                $pengaduan = Pengaduan::orderBy('created_at', 'desc')->get();
             }
         } else {
-            $pengaduan = Pengaduan::all();
+            $pengaduan = Pengaduan::orderBy('created_at', 'desc')->get();
         }
         return view('master.pengaduan.index', compact('pengaduan'));
+    }
+    public function track()
+    {
+        return view('master.pengaduan.track');
+    }
+    public function trackSearch(Request $request)
+    {
+        $pengaduan = Pengaduan::where('nomor_pendaftaran', $request->nomor_pendaftaran)->first();
+        if ($pengaduan) {
+            return redirect()->route('laporan.track')->with(['pengaduan' => $pengaduan, 'success' => 'Data Laporan Pengaduan Berhasil Ditemukan!']);
+        } else {
+            return redirect()->route('laporan.track')->withErrors('Laporan Pengaduan Tidak Ditemukan!');
+        }
     }
 
     /**
@@ -33,8 +49,9 @@ class PengaduanController extends Controller
      */
     public function create()
     {
-        $kategori_pelapor = KategoriPelapor::all();
-        return view('master.laporan.create', compact('kategori_pelapor'));
+        $jenis_pengaduan = JenisPengaduan::all();
+        $kategori_pelapor = KategoriPelapor::with('instansi')->get();
+        return view('master.pengaduan.create', compact('kategori_pelapor', 'jenis_pengaduan'));
     }
 
     /**
@@ -63,6 +80,8 @@ class PengaduanController extends Controller
         $pengaduan->alamat = $request->alamat;
         $pengaduan->lokasi_kejadian = $request->lokasi_kejadian;
         $pengaduan->tanggal_kejadian = $request->tanggal_kejadian;
+        $pengaduan->jenis_id = $request->jenis_pengaduan_id;
+        $pengaduan->kategori_instansi_id =  $request->input('kategori_instansi_id_' . $request->kategori_id);
         $pengaduan->kronologi = $request->kronologi;
         if ($request->kategori_id == 1) {
             $pengaduan->nomor_pendaftaran = 'MU-' . Str::random(7);
@@ -85,7 +104,7 @@ class PengaduanController extends Controller
         }
 
         $pengaduan->save();
-        // return redirect()->back()->with(['success' => 'Berhasil Membuat Laporan']);
+        return redirect()->back()->with(['success' => 'Berhasil Membuat Laporan']);
     }
 
     public function changeStatus(Request $request)

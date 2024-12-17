@@ -69,6 +69,6 @@ class KategoriInstansiController extends Controller
     public function destroy(KategoriInstansi $kategori_instansi)
     {
         $kategori_instansi->delete();
-        return redirect()->back()->with(['success' => 'Berhasil Menambahkan Kategori Instansi']);
+        return redirect()->back()->with(['success' => 'Berhasil Menghapus Kategori Instansi']);
     }
 }
