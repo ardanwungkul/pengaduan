@@ -22,8 +22,9 @@
 <body class="font-poppins antialiased">
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
         <x-sidebar />
-        <div class="pl-64">
-            <main class="p-10">
+        <x-bottom-navbar />
+        <div class="lg:pl-64 pb-20">
+            <main class="lg:p-10 p-5">
                 @if (count($errors) > 0)
                     <div class="fixed bottom-5 right-5">
                         @foreach ($errors->all() as $error)
@@ -93,14 +94,13 @@
                 @endif
                 @if (isset($header))
                     <header class="bg-white shadow-lg rounded-lg border border-gray-300 mb-4">
-                        <div class="p-6">
-                            <div class="flex justify-between items-center">
-                                {{-- <a href="{{ url()->previous() }}" class="btn btn-default">Back</a> --}}
-                                <p class="font-semibold text-xl text-gray-800 leading-none">
+                        <div class="lg:p-6 p-3">
+                            <div class="flex flex-col lg:flex-row justify-between items-center">
+                                <p class="font-semibold lg:text-xl text-lg text-gray-800 leading-none">
                                     {{ $header }}
                                 </p>
-                                <div class="text-center">
-                                    <p class="">Hii, {{ Auth::user()->name }}</p>
+                                <div class="text-center text-gray-500 hidden lg:block">
+                                    <p class="lg:text-base text-sm">Hii, {{ Auth::user()->name }}</p>
                                     <p class="text-xs">{{ now()->format('D, d M Y') }}</p>
                                 </div>
                             </div>

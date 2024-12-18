@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="max-w-5xl mx-auto p-10 space-y-10">
+    <div class="max-w-5xl mx-auto lg:p-10 p-5 space-y-10">
         <div class="bg-white rounded-lg w-full p-10 shadow-lg">
             <p class="text-lg font-semibold text-center">Layanan Lacak Pengaduan</p>
             <p class="text-xs text-gray-500 text-center">Masukkan Nomor Registrasi Pengaduan di sini.</p>
@@ -15,8 +15,7 @@
                             class="rounded-lg shadow-lg text-sm border border-gray-300" />
                     </div>
                     <button
-                        class="bg-watercouse-600 text-white px-5 py-2 rounded-lg shadow-lg text-sm whitespace-nowrap h-[37.33px]">Lacak
-                        Pengaduan</button>
+                        class="bg-watercouse-600 text-white px-5 py-2 rounded-lg shadow-lg text-sm whitespace-nowrap h-[37.33px]">Cari</button>
                 </fieldset>
             </form>
         </div>
@@ -77,9 +76,9 @@
                     <legend class="px-3">Laporan</legend>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="flex flex-col gap-1 items-start col-span-2">
-                            <p>Jenis Pengaduan</p>
+                            <p>Subjek Laporan</p>
                             <input type="text" disabled
-                                value="{{ session('pengaduan')->jenis_pengaduan ? session('pengaduan')->jenis_pengaduan->nama_jenis : null }}"
+                                value="{{ session('pengaduan')->subjek_laporan ? session('pengaduan')->subjek_laporan->nama_subjek : null }}"
                                 class="text-sm w-full rounded-lg shadow-lg border-gray-300 capitalize">
                         </div>
                         <div class="flex flex-col gap-1 items-start col-span-2">

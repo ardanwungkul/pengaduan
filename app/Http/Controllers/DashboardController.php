@@ -17,11 +17,11 @@ class DashboardController extends Controller
             ->count();
 
         $pengaduan_diterima_count = Pengaduan::whereBetween('created_at', [$startOfMonth, $endOfMonth])
-            ->whereIn('status', ['Diterima', 'Ditindak Lanjuti Ke Penelitian'])
+            ->where('respon_1_status', true)
             ->count();
 
         $pengaduan_ditolak_count = Pengaduan::whereBetween('created_at', [$startOfMonth, $endOfMonth])
-            ->where('status', 'Ditolak')
+            ->where('respon_1_status', false)
             ->count();
 
         return view('dashboard', compact(

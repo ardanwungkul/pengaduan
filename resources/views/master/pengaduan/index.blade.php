@@ -10,7 +10,7 @@
                         <tr class="text-xs">
                             <th class="!font-semibold">Nomor dan Tanggal Pengaduan</th>
                             <th class="!font-semibold">Kategori</th>
-                            <th class="!font-semibold">Jenis Pengaduan</th>
+                            <th class="!font-semibold">Subjek Laporan</th>
                             <th class="!font-semibold">Nama Pelapor</th>
                             <th class="!font-semibold">Alamat</th>
                             <th class="!font-semibold">Email/Telp</th>
@@ -42,7 +42,7 @@
                                         </p>
                                     </div>
                                 </td>
-                                <td>{{ $item->jenis_pengaduan ? $item->jenis_pengaduan->nama_jenis : '' }}</td>
+                                <td>{{ $item->subjek_laporan ? $item->subjek_laporan->nama_subjek : '' }}</td>
                                 <td>{{ $item->nama }}</td>
                                 <td class="!text-start">{{ $item->alamat }}</td>
                                 <td class="!text-start">
@@ -57,16 +57,88 @@
                                         {{ $item->lokasi_kejadian }}
                                     </p>
                                 </td>
+                                {{-- Status --}}
                                 <td>
-                                    <p
-                                        class="{{ $item->status == 'Diterima' || $item->status == 'Ditindak Lanjuti Ke Penelitian' ? 'text-green-500' : ($item->status == 'Ditolak' ? 'text-red-500' : '') }}">
-                                        {{ $item->status }}</p>
-                                    <p class="text-xs text-gray-500">{{ $item->tanggal_status }}</p>
+                                    @if ($item->respon_3_status !== null)
+                                        @if ($item->respon_3_status == true)
+                                            Respon 3 true
+                                        @else
+                                            Respon 3 false
+                                        @endif
+                                    @elseif ($item->respon_2_status !== null)
+                                        @if ($item->respon_2_status == true)
+                                            <p class="text-green-500">
+                                                Ditindak Lanjuti ke Penelitian
+                                            </p>
+                                            <p class="text-xs text-gray-400">
+                                                {{ \Carbon\Carbon::parse($item->respon_2_tanggal)->format('d M Y h:i') }}
+                                            </p>
+                                        @else
+                                            <p class="text-red-500">
+                                                Tidak Dapat di Tindak Lanjuti
+                                            </p>
+                                            <p class="text-xs text-gray-400">
+                                                {{ \Carbon\Carbon::parse($item->respon_2_tanggal)->format('d M Y h:i') }}
+                                            </p>
+                                        @endif
+                                    @elseif($item->respon_2_status == null && $item->respon_1_status !== null)
+                                        @if ($item->respon_1_status == true)
+                                            <p class="text-green-500">
+                                                Diterima
+                                            </p>
+                                            <p class="text-xs text-gray-400">
+                                                {{ \Carbon\Carbon::parse($item->respon_1_tanggal)->format('d M Y h:i') }}
+                                            </p>
+                                        @else
+                                            <p class="text-red-500">
+                                                Ditolak
+                                            </p>
+                                            <p class="text-xs text-gray-400">
+                                                {{ \Carbon\Carbon::parse($item->respon_1_tanggal)->format('d M Y h:i') }}
+                                            </p>
+                                        @endif
+                                    @else
+                                        <p>
+                                            Belum di Proses
+                                        </p>
+                                    @endif
                                 </td>
+                                {{-- Keterangan --}}
                                 <td>
-                                    <p class="text-start">
-                                        {{ $item->keterangan_ditolak }}
-                                    </p>
+                                    @if ($item->respon_3_status !== null)
+                                        @if ($item->respon_3_status == true)
+                                            Respon 3 true
+                                        @else
+                                            Respon 3 false
+                                        @endif
+                                    @elseif ($item->respon_2_status !== null)
+                                        @if ($item->respon_2_status == true)
+                                            {{-- <p class="text-green-500">
+                                                Ditindak Lanjuti ke Penelitian
+                                            </p> --}}
+                                        @else
+                                            <p>
+                                                {{ $item->respon_2_keterangan }}
+                                            </p>
+                                        @endif
+                                    @elseif($item->respon_2_status == null && $item->respon_1_status !== null)
+                                        @if ($item->respon_1_status == true)
+                                            {{-- <p class="text-green-500">
+                                                Diterima
+                                            </p>
+                                            <p class="text-xs text-gray-400">
+                                                {{ \Carbon\Carbon::parse($item->respon_1_tanggal)->format('d M Y h:i') }}
+                                            </p> --}}
+                                        @else
+                                            <p>
+                                                {{ $item->respon_1_keterangan }}
+                                            </p>
+                                        @endif
+                                    @else
+                                        {{-- <p>
+                                            Belum di Proses
+                                        </p> --}}
+                                    @endif
                                 </td>
                                 <td class="flex justify-center items-center">
                                     <button data-modal-target="show-detail-{{ $item->id }}"
@@ -93,9 +165,35 @@
                                         <p class="whitespace-nowrap">Lihat Detail</p>
                                     </button>
                                     <x-modal.show-detail-pengaduan :pengaduan="$item" />
-                                    @if ($item->status == 'Belum Di Proses')
+                                    @if ($item->respon_3_status !== null)
+                                        {{-- @if ($item->respon_3_status == true)
+                                            Respon 3 true
+                                        @else
+                                            Respon 3 false
+                                        @endif --}}
+                                    @elseif ($item->respon_2_status !== null)
+                                        {{-- @if ($item->respon_2_status == true)
+                                            <p class="text-green-500">
+                                                Ditindak Lanjuti ke Penelitian
+                                            </p>
+                                        @else
+                                            <p class="text-red-500">
+                                                Tidak Dapat di Tindak Lanjuti
+                                            </p>
+                                        @endif --}}
+                                    @elseif($item->respon_2_status == null && $item->respon_1_status !== null)
+                                        @if ($item->respon_1_status == true)
+                                            <x-modal.tolak-tindak-lanjut :pengaduan="$item" />
+                                        @else
+                                            {{-- <x-modal.tolak-pengaduan :pengaduan="$item" /> --}}
+                                        @endif
+                                    @else
+                                        {{-- <p>
+                                            Belum di Proses
+                                        </p> --}}
                                         <x-modal.tolak-pengaduan :pengaduan="$item" />
                                     @endif
+
                                 </td>
                             </tr>
                         @endforeach

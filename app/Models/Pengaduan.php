@@ -16,8 +16,8 @@ class Pengaduan extends Model
     {
         return $this->belongsTo(KategoriInstansi::class, 'kategori_instansi_id');
     }
-    public function jenis_pengaduan()
+    public function subjek_laporan()
     {
-        return $this->belongsTo(JenisPengaduan::class, 'jenis_id');
+        return $this->belongsTo(SubjekLaporan::class, 'subjek_id');
     }
 }

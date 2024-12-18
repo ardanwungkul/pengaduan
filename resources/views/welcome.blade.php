@@ -1,48 +1,50 @@
 <x-guest-layout>
     <div class="h-[calc(100vh-80px)] !bg-gradient-to-b from-watercouse-200 to-watercouse-50 rounded-b-3xl relative">
-        <div class="grid md:grid-cols-2 grid-cols-1 max-w-6xl mx-auto h-full px-5 md:px-0">
+        <div class="grid lg:grid-cols-2 grid-cols-1 max-w-6xl mx-auto h-full px-5 lg:px-0">
             <div class="flex flex-col justify-center gap-2 px-5 relative z-10">
-                <p class="text-3xl font-semibold">Laporkan dugaan korupsi, penyalahgunaan wewenang, pelanggaran kode
+                <p class="text-3xl font-semibold text-center lg:text-start">Laporkan dugaan korupsi, penyalahgunaan
+                    wewenang,
+                    pelanggaran kode
                     etik/disiplin, asusila, atau pelanggaran hukum lainnya oleh ASN!
                 </p>
-                <p class="text-watercouse-700 text-sm font-light">Mari wujudkan Kabupaten Paser
+                <p class="text-watercouse-700 text-sm font-light text-center lg:text-start">Mari wujudkan Kabupaten Paser
                     <span class="font-extrabold py-1">
                         Bersih dari Korupsi, Berintegritas dan Patuh dengan Hukum
                     </span>
                 </p>
-                <a href="{{ route('laporan.create') }}"
-                    class="!mt-5 border-2 border-watercouse-700 rounded-lg text-watercouse-700 font-semibold px-5 py-1 text-xl hover:bg-watercouse-700 hover:text-white transition-all duration-500 w-min whitespace-nowrap">Lapor
-                    Sekarang!</a>
+                <div class="!mt-5 flex justify-center lg:justify-start">
+                    <a href="{{ route('laporan.create') }}"
+                        class=" border-2 border-watercouse-700 rounded-lg text-watercouse-700 font-semibold px-5 py-1 text-xl hover:bg-watercouse-700 hover:text-white transition-all duration-500 w-min whitespace-nowrap">Lapor
+                        Sekarang!</a>
+                </div>
             </div>
             <div
-                class="flex items-center justify-center absolute md:relative top-0 w-full h-full z-0 opacity-20 md:opacity-100">
+                class="flex items-center justify-center absolute lg:relative top-0 w-full h-full z-0 opacity-20 lg:opacity-100">
                 <img src="{{ asset('assets/images/hero-bg.png') }}" alt="">
             </div>
         </div>
     </div>
-    <div class="bg-gradient-to-b from-watercouse-50 to-white mt-10 p-5 h-screen flex items-center">
-        <div class="grid grid-cols-3 gap-5 max-w-6xl mx-auto">
-            <div class="flex">
-                <div
-                    class="flex flex-col items-center justify-center max-w-6xl mx-auto gap-10 bg-watercouse-500 rounded-xl py-3 shadow-lg">
-                    <dotlottie-wc src="https://lottie.host/4a028cea-11e9-49f3-aa97-f11ea2fab444/3TqaqxNJbX.lottie"
-                        autoplay speed="0.5" loop></dotlottie-wc>
-                    <div class="flex flex-col">
-                        <p class="text-center text-2xl font-semibold pb-1 text-white">Perlindungan Bagi Pelapor
-                        </p>
-                        <p class="max-w-3xl text-center text-sm text-gray-100 p-3 pb-0">
-                            Laporkan pelanggaran ASN kepada kami dengan jaminan kerahasiaan identitas Anda, selama
-                            laporan
-                            tidak
-                            disebarkan secara publik.</p>
-                    </div>
+    <div class="bg-gradient-to-b from-watercouse-50 to-white mt-10 p-5 lg:h-screen flex items-center">
+        <div class="grid lg:grid-cols-3 grid-cols-1 gap-5 max-w-6xl mx-auto">
+            <div
+                class="flex flex-col items-center justify-center max-w-6xl mx-auto gap-10 bg-watercouse-500 rounded-xl py-3 shadow-lg">
+                <dotlottie-wc src="https://lottie.host/4a028cea-11e9-49f3-aa97-f11ea2fab444/3TqaqxNJbX.lottie" autoplay
+                    speed="0.5" loop></dotlottie-wc>
+                <div class="flex flex-col">
+                    <p class="text-center text-2xl font-semibold pb-1 text-white">Perlindungan Bagi Pelapor
+                    </p>
+                    <p class="max-w-3xl text-center text-sm text-gray-100 p-3 pb-0">
+                        Laporkan pelanggaran ASN kepada kami dengan jaminan kerahasiaan identitas Anda, selama
+                        laporan
+                        tidak
+                        disebarkan secara publik.</p>
                 </div>
             </div>
             <div class="col-span-2 px-3 bg-watercouse-100 rounded-xl p-5 flex items-center justify-center shadow-lg">
                 <div>
-                    <p class="text-center text-2xl font-semibold border-b pb-1 max-w-3xl mx-auto">Bentuk-bentuk
-                        Pelanggaran
-                        yang bisa Anda laporkan
+                    <p class="text-center lg:text-2xl text-lg font-semibold border-b pb-1 max-w-3xl mx-auto">
+                        Bentuk-bentuk
+                        Pelanggaran yang bisa Anda laporkan
                     </p>
                     <div
                         class="grid grid-cols-4 max-w-6xl mx-auto px-5 pt-5 text-center gap-y-5 gap-x-3 place-items-start place-content-center">
@@ -64,7 +66,7 @@
                                     </g>
                                 </svg>
                             </div>
-                            <p class="font-medium">Tindak Pidana Korupsi dan Gratifikasi</p>
+                            <p class="font-medium text-sm lg:text-base">Tindak Pidana Korupsi dan Gratifikasi</p>
                         </div>
                         <div class="flex justify-center items-center flex-col gap-2 w-full">
                             <div
@@ -101,7 +103,7 @@
                                     </g>
                                 </svg>
                             </div>
-                            <p class="font-medium">Penyalahgunaan Wewenang ASN</p>
+                            <p class="font-medium text-sm lg:text-base">Penyalahgunaan Wewenang ASN</p>
                         </div>
                         <div class="flex justify-center items-center flex-col gap-2 w-full">
                             <div
@@ -124,7 +126,7 @@
                                     </g>
                                 </svg>
                             </div>
-                            <p class="font-medium">Pelanggaran Etika ASN</p>
+                            <p class="font-medium text-sm lg:text-base">Pelanggaran Etika ASN</p>
                         </div>
                         <div class="flex justify-center items-center flex-col gap-2 w-full">
                             <div
@@ -188,7 +190,7 @@
                                     </g>
                                 </svg>
                             </div>
-                            <p class="font-medium">Sumpah Jabatan dan Disiplin ASN</p>
+                            <p class="font-medium text-sm lg:text-base">Sumpah Jabatan dan Disiplin ASN</p>
                         </div>
                         <div class="flex justify-center items-center flex-col gap-2 w-full">
                             <div
@@ -203,7 +205,7 @@
                                     </g>
                                 </svg>
                             </div>
-                            <p class="font-medium">Perbuatan Tercela ASN</p>
+                            <p class="font-medium text-sm lg:text-base">Perbuatan Tercela ASN</p>
                         </div>
                         <div class="flex justify-center items-center flex-col gap-2 w-full">
                             <div
@@ -220,7 +222,7 @@
                                     </g>
                                 </svg>
                             </div>
-                            <p class="font-medium">Pelanggaran Hukum ASN</p>
+                            <p class="font-medium text-sm lg:text-base">Pelanggaran Hukum ASN</p>
                         </div>
                         <div class="flex justify-center items-center flex-col gap-2 w-full">
                             <div
@@ -234,7 +236,7 @@
                                     </g>
                                 </svg>
                             </div>
-                            <p class="font-medium">Maladministrasi Layanan Publik</p>
+                            <p class="font-medium text-sm lg:text-base">Maladministrasi Layanan Publik</p>
                         </div>
                         <div class="flex justify-center items-center flex-col gap-2 w-full">
                             <div
@@ -251,7 +253,7 @@
                                     </g>
                                 </svg>
                             </div>
-                            <p class="font-medium">Pelayanan Publik yang Buruk</p>
+                            <p class="font-medium text-sm lg:text-base">Pelayanan Publik yang Buruk</p>
                         </div>
                     </div>
                 </div>

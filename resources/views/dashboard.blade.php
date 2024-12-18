@@ -3,9 +3,8 @@
         {{ __('Dashboard') }}
     </x-slot>
     <div>
-        <div class="grid grid-cols-3 gap-4">
-            <div class="col-span-3">
-
+        <div class="grid md:grid-cols-3 grid-cols-1 gap-4">
+            <div class="md:col-span-3">
                 <form method="GET" action="{{ route('dashboard') }}">
                     <input type="month" name="filter_month" value="{{ request('filter_month', date('Y-m')) }}"
                         class="rounded-lg border-gray-300 shadow-lg w-full" onchange="this.form.submit()">

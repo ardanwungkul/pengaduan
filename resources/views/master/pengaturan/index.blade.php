@@ -5,26 +5,26 @@
     <div class="p-5 bg-white border border-gray-300 shadow-lg rounded-lg space-y-4">
         <header>
             <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                {{ __('Jenis Pengaduan') }}
+                {{ __('Subjek Laporan') }}
             </h2>
         </header>
-        <button type="button" data-modal-target="tambah-jenis-pengaduan" data-modal-toggle="tambah-jenis-pengaduan"
-            class="bg-green-500 text-white px-5 py-2 rounded-lg shadow-lg text-xs hover:bg-opacity-90 mb-4">Tambah
-            Jenis Pengaduan</button>
-        <x-modal.tambah-jenis-pengaduan />
+        <button type="button" data-modal-target="tambah-subjek-laporan" data-modal-toggle="tambah-subjek-laporan"
+            class="bg-green-500 text-white px-5 py-2 rounded-lg shadow-lg text-xs hover:bg-opacity-90 mb-4">Tambah Subjek
+            Laporan</button>
+        <x-modal.tambah-subjek-laporan />
         <div class="relative">
             <div class="rounded-lg border border-gray-300 shadow-lg overflow-hidden">
                 <table class="w-full" id="table-jenis">
                     <thead class="bg-gray-200 ">
                         <tr class="text-xs">
-                            <th>Jenis Pengaduan</th>
+                            <th>Subjek Laporan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="text-xs">
-                        @foreach ($jenis as $item)
+                        @foreach ($subjek as $item)
                             <tr>
-                                <td>{{ $item->nama_jenis }}</td>
+                                <td>{{ $item->nama_subjek }}</td>
                                 <td class="flex items-center justify-center gap-3">
                                     <button type="button" data-modal-target="confirm-delete-{{ $item->id }}"
                                         data-modal-toggle="confirm-delete-{{ $item->id }}"
@@ -50,7 +50,7 @@
                                         </svg>
                                         <p class="whitespace-nowrap">Hapus</p>
                                     </button>
-                                    <x-modal.confirm-delete :id="$item->id" :name="'Jenis Pengaduan'" :action="route('jenis-pengaduan.destroy', $item->id)" />
+                                    <x-modal.confirm-delete :id="$item->id" :name="'Subjek Laporan'" :action="route('subjek-laporan.destroy', $item->id)" />
                                 </td>
                             </tr>
                         @endforeach
@@ -140,7 +140,8 @@
                     orderable: false,
                     targets: [1]
                 }
-            ]
+            ],
+            order: []
         });
         let tablekategori = $('#table-kategori').DataTable({
             info: false,
@@ -152,14 +153,9 @@
             },
             searching: false,
             columnDefs: [{
-                    className: "dt-center",
-                    targets: [1]
-                },
-                {
-                    orderable: false,
-                    targets: [1]
-                }
-            ]
+                orderable: false,
+                targets: [1]
+            }],
         });
     });
 </script>

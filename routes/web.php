@@ -6,10 +6,12 @@ use App\Http\Controllers\KategoriInstansiController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubjekLaporanController;
 use App\Http\Controllers\UserController;
 use App\Models\JenisPengaduan;
 use App\Models\KategoriInstansi;
 use App\Models\KategoriPelapor;
+use App\Models\SubjekLaporan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +32,7 @@ Route::get('buat-pengaduan', [PengaduanController::class, 'create'])->name('lapo
 Route::get('lacak-pengaduan', [PengaduanController::class, 'track'])->name('laporan.track');
 Route::post('lacak-pengaduan', [PengaduanController::class, 'trackSearch'])->name('laporan.track.search');
 Route::post('buat-pengaduan', [PengaduanController::class, 'store'])->name('laporan.store');
+Route::get('download-registrasi/{nomor_pendaftaran}', [PengaduanController::class, 'downloadRegistrasi'])->name('laporan.download.registrasi');
 
 Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::resource('admin/users', UserController::class);
@@ -39,14 +42,14 @@ Route::middleware(['auth', 'role:superadmin,admin'])->group(function () {
     Route::get('admin/pengaduan', [PengaduanController::class, 'index'])->name('pengaduan.index');
     Route::post('admin/status-pengaduan', [PengaduanController::class, 'changeStatus'])->name('pengaduan.status');
     Route::get('admin/pengaturan', function () {
-        $jenis = JenisPengaduan::all();
+        $subjek = SubjekLaporan::all();
         $kategori = KategoriPelapor::all();
         $instansi = KategoriInstansi::all();
-        return view('master.pengaturan.index', compact('jenis', 'instansi', 'kategori'));
+        return view('master.pengaturan.index', compact('subjek', 'instansi', 'kategori'));
     })->name('pengaturan.index');
     Route::post('admin/kategori-instansi', [KategoriInstansiController::class, 'store'])->name('kategori-instansi.store');
     Route::delete('admin/kategori-instansi/{kategori_instansi}', [KategoriInstansiController::class, 'destroy'])->name('kategori-instansi.destroy');
-    Route::resource('admin/jenis-pengaduan', JenisPengaduanController::class);
+    Route::resource('admin/subjek-laporan', SubjekLaporanController::class);
 });
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

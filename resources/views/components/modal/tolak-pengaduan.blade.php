@@ -29,7 +29,8 @@
                 <form action="{{ route('pengaduan.status') }}" method="POST">
                     @csrf
                     @method('POST')
-                    <input type="hidden" name="status" value="Ditolak">
+                    <input type="hidden" name="respon" value="1">
+                    <input type="hidden" name="status" value="false">
                     <input type="hidden" name="pengaduan_id" value="{{ $pengaduan->id }}">
                     <div>
                         <div class="flex flex-col gap-1">

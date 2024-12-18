@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\JenisPengaduan;
 use App\Models\KategoriPelapor;
 use App\Models\Pengaduan;
+use App\Models\SubjekLaporan;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class PengaduanController extends Controller
@@ -17,11 +20,13 @@ class PengaduanController extends Controller
     {
         if ($request->filter) {
             if ($request->filter == 'diterima') {
-                $pengaduan = Pengaduan::whereIn('status', ['Diterima', 'Ditindak Lanjuti Ke Penelitian'])
+                $pengaduan = Pengaduan::where('respon_1_status', true)
                     ->orderBy('created_at', 'desc')
                     ->get();
             } elseif ($request->filter == 'ditolak') {
-                $pengaduan = Pengaduan::where('status', 'Ditolak')->orderBy('created_at', 'desc')->get();
+                $pengaduan = Pengaduan::where('respon_1_status', false)
+                    ->orderBy('created_at', 'desc')
+                    ->get();
             } else {
                 $pengaduan = Pengaduan::orderBy('created_at', 'desc')->get();
             }
@@ -43,20 +48,12 @@ class PengaduanController extends Controller
             return redirect()->route('laporan.track')->withErrors('Laporan Pengaduan Tidak Ditemukan!');
         }
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $jenis_pengaduan = JenisPengaduan::all();
+        $subjek_laporan = SubjekLaporan::all();
         $kategori_pelapor = KategoriPelapor::with('instansi')->get();
-        return view('master.pengaduan.create', compact('kategori_pelapor', 'jenis_pengaduan'));
+        return view('master.pengaduan.create', compact('kategori_pelapor', 'subjek_laporan'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -80,7 +77,7 @@ class PengaduanController extends Controller
         $pengaduan->alamat = $request->alamat;
         $pengaduan->lokasi_kejadian = $request->lokasi_kejadian;
         $pengaduan->tanggal_kejadian = $request->tanggal_kejadian;
-        $pengaduan->jenis_id = $request->jenis_pengaduan_id;
+        $pengaduan->subjek_id = $request->subjek_id;
         $pengaduan->kategori_instansi_id =  $request->input('kategori_instansi_id_' . $request->kategori_id);
         $pengaduan->kronologi = $request->kronologi;
         if ($request->kategori_id == 1) {
@@ -104,17 +101,36 @@ class PengaduanController extends Controller
         }
 
         $pengaduan->save();
-        return redirect()->back()->with(['success' => 'Berhasil Membuat Laporan']);
+        return redirect()->back()->with(['success' => 'Berhasil Membuat Laporan', 'nomor_pendaftaran' => $pengaduan->nomor_pendaftaran]);
     }
 
     public function changeStatus(Request $request)
     {
         $pengaduan = Pengaduan::find($request->pengaduan_id);
-        $pengaduan->status = $request->status;
-        $pengaduan->keterangan_ditolak = $request->keterangan;
-        $pengaduan->tanggal_status = now();
+        if ($request->respon == 1) {
+            $pengaduan->respon_1_status = $request->status == 'true' ? true : false;
+            $pengaduan->respon_1_tanggal = now();
+            if ($request->status == 'false') {
+                $pengaduan->respon_1_keterangan = $request->keterangan;
+            }
+            $pengaduan->respon_1_user_id = Auth::user()->id;
+        } else if ($request->respon == 2) {
+            $pengaduan->respon_2_status = $request->status == 'true' ? true : false;
+            $pengaduan->respon_2_tanggal = now();
+            if ($request->status == 'false') {
+                $pengaduan->respon_2_keterangan = $request->keterangan;
+            }
+            $pengaduan->respon_2_user_id = Auth::user()->id;
+        }
         $pengaduan->save();
         return redirect()->back()->with(['success' => 'Berhasil Melakukan Proses Data Pengaduan']);
+    }
+
+    public function downloadRegistrasi($nomor_pendaftaran)
+    {
+        $pengaduan = Pengaduan::where('nomor_pendaftaran', $nomor_pendaftaran)->first();
+        $pdf = PDF::loadView('master.pengaduan.pdf', ['pengaduan' => $pengaduan]);
+        return $pdf->download('Nomor Registrasi Pengaduan.pdf');
     }
 
     /**

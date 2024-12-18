@@ -13,13 +13,38 @@
                     <p>No: {{ $pengaduan->nomor_pendaftaran }}</p>
                 </div>
                 <div class="flex gap-4 items-center justify-center">
-                    <p
-                        class="{{ $pengaduan->status == 'Diterima' || $pengaduan->status == 'Ditindak Lanjuti Ke Penelitian'
-                            ? 'text-green-500'
-                            : ($pengaduan->status == 'Ditolak'
-                                ? 'text-red-500'
-                                : 'text-gray-500') }}">
-                        {{ $pengaduan->status }}</p>
+                    {{-- Status Header --}}
+                    @if ($pengaduan->respon_3_status !== null)
+                        @if ($pengaduan->respon_3_status == true)
+                            Respon 3 true
+                        @else
+                            Respon 3 false
+                        @endif
+                    @elseif ($pengaduan->respon_2_status !== null)
+                        @if ($pengaduan->respon_2_status == true)
+                            <p class="text-green-500">
+                                Ditindak Lanjuti ke Penelitian
+                            </p>
+                        @else
+                            <p class="text-red-500">
+                                Tidak Dapat di Tindak Lanjuti
+                            </p>
+                        @endif
+                    @elseif($pengaduan->respon_2_status == null && $pengaduan->respon_1_status !== null)
+                        @if ($pengaduan->respon_1_status == true)
+                            <p class="text-green-500">
+                                Diterima
+                            </p>
+                        @else
+                            <p class="text-red-500">
+                                Ditolak
+                            </p>
+                        @endif
+                    @else
+                        <p>
+                            Belum di Proses
+                        </p>
+                    @endif
                     <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                         data-modal-hide="show-detail-{{ $pengaduan->id }}">
@@ -91,7 +116,7 @@
                         <div class="flex flex-col gap-1 items-start col-span-2">
                             <p>Jenis Pengaduan</p>
                             <input type="text" disabled
-                                value="{{ $pengaduan->jenis_pengaduan ? $pengaduan->jenis_pengaduan->nama_jenis : null }}"
+                                value="{{ $pengaduan->subjek_laporan ? $pengaduan->subjek_laporan->nama_subjek : null }}"
                                 class="text-xs w-full rounded-lg shadow-lg border-gray-300 capitalize">
                         </div>
                         <div class="flex flex-col gap-1 items-start col-span-2">
@@ -116,13 +141,49 @@
                         </div>
                         <div class="flex flex-col gap-1 items-start col-span-2">
                             <p>Status</p>
-                            <input type="text" disabled value="{{ $pengaduan->status }}"
-                                class="text-xs w-full rounded-lg shadow-lg border-gray-300">
+                            {{-- Status Field --}}
+                            @if ($pengaduan->respon_3_status !== null)
+                                @if ($pengaduan->respon_3_status == true)
+                                    Respon 3 true
+                                @else
+                                    Respon 3 false
+                                @endif
+                            @elseif ($pengaduan->respon_2_status !== null)
+                                @if ($pengaduan->respon_2_status == true)
+                                    <p
+                                        class="border border-gray-300 rounded-lg p-2.5 bg-white shadow-lg w-full text-start text-green-500">
+                                        Ditindak Lanjuti ke Penelitian
+                                    </p>
+                                @else
+                                    <p
+                                        class="border border-gray-300 rounded-lg p-2.5 bg-white shadow-lg w-full text-start text-red-500">
+                                        Tidak Dapat di Tindak Lanjuti
+                                    </p>
+                                @endif
+                            @elseif($pengaduan->respon_2_status == null && $pengaduan->respon_1_status !== null)
+                                @if ($pengaduan->respon_1_status == true)
+                                    <p
+                                        class="border border-gray-300 rounded-lg p-2.5 bg-white shadow-lg w-full text-start text-green-500">
+                                        Diterima
+                                    </p>
+                                @else
+                                    <p
+                                        class="border border-gray-300 rounded-lg p-2.5 bg-white shadow-lg w-full text-start text-red-500">
+                                        Ditolak
+                                    </p>
+                                @endif
+                            @else
+                                <p
+                                    class="border border-gray-300 rounded-lg p-2.5 bg-white shadow-lg w-full text-start text-gray-500">
+                                    Belum di Proses
+                                </p>
+                            @endif
                         </div>
-                        @if ($pengaduan->status == 'Ditolak')
+                        {{-- Status Keterangan --}}
+                        @if ($pengaduan->respon_1_status !== null && $pengaduan->respon_1_status == false)
                             <div class="flex flex-col gap-1 items-start col-span-2">
                                 <p>Keterangan Ditolak</p>
-                                <textarea disabled class="text-xs w-full rounded-lg shadow-lg border-gray-300">{{ $pengaduan->keterangan_ditolak }}</textarea>
+                                <textarea disabled class="text-xs w-full rounded-lg shadow-lg border-gray-300">{{ $pengaduan->respon_1_keterangan }}</textarea>
                             </div>
                         @endif
                         <div class="col-span-2 flex justify-center">
@@ -142,41 +203,58 @@
                         </div>
                     </div>
                 </fieldset>
-                @if ($pengaduan->status == 'Belum Di Proses')
-                    <div class="flex gap-4 w-full">
-                        <form action="{{ route('pengaduan.status') }}" method="POST" class="w-full">
-                            @csrf
-                            @method('POST')
-                            <input type="hidden" name="status" value="Diterima">
-                            <input type="hidden" name="pengaduan_id" value="{{ $pengaduan->id }}">
-                            <button type="submit"
-                                class="w-full bg-green-500 rounded-lg shadow-lg text-white py-2 hover:bg-opacity-90 border border-gray-300">
-                                Terima
+                {{-- Action --}}
+                @if ($pengaduan->respon_3_status !== null)
+                    @if ($pengaduan->respon_3_status == true)
+                        Respon 3 true
+                    @else
+                        Respon 3 false
+                    @endif
+                @elseif ($pengaduan->respon_2_status !== null)
+                    @if ($pengaduan->respon_2_status == true)
+                    @else
+                    @endif
+                @elseif($pengaduan->respon_2_status == null && $pengaduan->respon_1_status !== null)
+                    @if ($pengaduan->respon_1_status == true)
+                        <div class="flex gap-4 w-full">
+                            <button data-modal-hide="show-detail-{{ $pengaduan->id }}"
+                                data-modal-target="tolak-tindak-lanjut-{{ $pengaduan->id }}"
+                                data-modal-toggle="tolak-tindak-lanjut-{{ $pengaduan->id }}" type="button"
+                                class="w-full bg-red-500 rounded-lg shadow-lg text-white py-2 hover:bg-opacity-90 border border-gray-300">
+                                Tidak Dapat di Tinjak Lanjuti
                             </button>
-                        </form>
+                            <form action="{{ route('pengaduan.status') }}" method="POST" class="w-full">
+                                @csrf
+                                @method('POST')
+                                <input type="hidden" name="respon" value="2">
+                                <input type="hidden" name="status" value="true">
+                                <input type="hidden" name="pengaduan_id" value="{{ $pengaduan->id }}">
+                                <button type="submit"
+                                    class="w-full bg-green-500 rounded-lg shadow-lg text-white py-2 hover:bg-opacity-90 border border-gray-300">
+                                    Tindak Lanjut
+                                </button>
+                            </form>
+                        </div>
+                    @endif
+                @else
+                    <div class="flex gap-4 w-full">
                         <button data-modal-hide="show-detail-{{ $pengaduan->id }}"
                             data-modal-target="tolak-pengaduan-{{ $pengaduan->id }}"
                             data-modal-toggle="tolak-pengaduan-{{ $pengaduan->id }}" type="button"
                             class="w-full bg-red-500 rounded-lg shadow-lg text-white py-2 hover:bg-opacity-90 border border-gray-300">
                             Tolak
                         </button>
-                    </div>
-                @elseif($pengaduan->status == 'Diterima')
-                    <div class="flex gap-4 w-full">
                         <form action="{{ route('pengaduan.status') }}" method="POST" class="w-full">
                             @csrf
                             @method('POST')
-                            <input type="hidden" name="status" value="Ditindak Lanjuti Ke Penelitian">
+                            <input type="hidden" name="respon" value="1">
+                            <input type="hidden" name="status" value="true">
                             <input type="hidden" name="pengaduan_id" value="{{ $pengaduan->id }}">
                             <button type="submit"
                                 class="w-full bg-green-500 rounded-lg shadow-lg text-white py-2 hover:bg-opacity-90 border border-gray-300">
-                                Tindak Lanjut
+                                Terima
                             </button>
                         </form>
-                        <button data-modal-hide="show-detail-{{ $pengaduan->id }}" type="button"
-                            class="w-full bg-red-500 rounded-lg shadow-lg text-white py-2 hover:bg-opacity-90 border border-gray-300">
-                            Batal
-                        </button>
                     </div>
                 @endif
 
