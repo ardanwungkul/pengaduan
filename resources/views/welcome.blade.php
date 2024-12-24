@@ -24,8 +24,8 @@
             </div>
         </div>
     </div>
-    <div class="bg-gradient-to-b from-watercouse-50 to-white mt-10 p-5 lg:h-screen flex items-center">
-        <div class="grid lg:grid-cols-3 grid-cols-1 gap-5 max-w-6xl mx-auto">
+    <div class="bg-gradient-to-b from-watercouse-50 to-white mt-10 p-5 lg:h-screen flex items-center justify-center">
+        <div class="grid lg:grid-cols-3 grid-cols-1 lg:gap-5 gap-y-5 max-w-6xl mx-auto w-full">
             <div
                 class="flex flex-col items-center justify-center max-w-6xl mx-auto gap-10 bg-watercouse-500 rounded-xl py-3 shadow-lg">
                 <dotlottie-wc src="https://lottie.host/4a028cea-11e9-49f3-aa97-f11ea2fab444/3TqaqxNJbX.lottie" autoplay
