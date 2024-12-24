@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div
-                class="flex items-center justify-center absolute lg:relative top-0 w-full h-full z-0 opacity-20 lg:opacity-100">
+                class="flex items-center justify-center absolute lg:relative top-0 left-0 w-full h-full z-0 opacity-20 lg:opacity-100">
                 <img src="{{ asset('assets/images/hero-bg.png') }}" alt="">
             </div>
         </div>
