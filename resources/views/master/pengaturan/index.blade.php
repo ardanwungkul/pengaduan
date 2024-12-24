@@ -99,9 +99,9 @@
                         <table class="w-full" id="table-kategori">
                             <thead class="bg-gray-200 ">
                                 <tr class="text-xs">
-                                    <th>Nama Kategori</th>
-                                    <th>Nama Jenis Instansi </th>
-                                    <th>Aksi</th>
+                                    <th data-priority="3">Nama Kategori</th>
+                                    <th data-priority="1">Nama Jenis Instansi </th>
+                                    <th data-priority="2">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="text-xs">
@@ -186,6 +186,7 @@
                     searchPlaceholder: 'Search...'
                 },
                 searching: false,
+                responsive: true,
                 columnDefs: [{
                     orderable: false,
                     targets: [1]
