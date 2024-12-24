@@ -135,7 +135,7 @@
                     <div class="flex flex-col gap-1 col-span-2">
                         <label for="tanggal_kejadian">Tanggal Kejadian</label>
                         <input type="date" name="tanggal_kejadian" id="tanggal_kejadian" required
-                            class="rounded-lg shadow-lg md:text-sm text-xs border border-gray-300" />
+                            class="rounded-lg shadow-lg md:text-sm text-xs border border-gray-300 w-full" />
                     </div>
                     <div class="flex flex-col gap-1 col-span-2">
                         <label for="lokasi_kejadian">Lokasi Kejadian</label>
