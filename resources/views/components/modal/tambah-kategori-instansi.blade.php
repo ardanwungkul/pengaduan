@@ -8,7 +8,7 @@
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
                 <div class="flex flex-col text-start">
                     <p class="text-xl font-semibold text-gray-900">
-                        Tambah Jenis Pengaduan
+                        Tambah Kategori Instansi
                     </p>
                 </div>
                 <button type="button"
@@ -39,9 +39,9 @@
                             </select>
                         </div>
                         <div class="flex flex-col gap-1">
-                            <label for="nama" class="text-start text-sm">Jenis Pengaduan</label>
+                            <label for="nama" class="text-start text-sm">Jenis Instansi</label>
                             <input required type="text" name="nama" id="nama"
-                                class="text-sm w-full rounded-lg shadow-lg" placeholder="Masukkan Jenis Pengaduan">
+                                class="text-sm w-full rounded-lg shadow-lg" placeholder="Masukkan Jenis Instansi">
                         </div>
                     </div>
                     <div class="flex gap-4 w-full justify-end mt-4">

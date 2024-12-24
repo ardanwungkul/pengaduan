@@ -1,53 +1,54 @@
 <x-guest-layout>
     <div class="max-w-5xl mx-auto lg:p-10 p-5 space-y-10">
-        <div class="bg-white rounded-lg w-full p-10 shadow-lg">
+        <div class="bg-white rounded-lg w-full md:p-10 p-5 shadow-lg">
             <p class="text-lg font-semibold text-center">Layanan Lacak Pengaduan</p>
             <p class="text-xs text-gray-500 text-center">Masukkan Nomor Registrasi Pengaduan di sini.</p>
             <form action="{{ route('laporan.track.search') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
                 <fieldset
-                    class="flex justify-between items-end mt-5 w-full text-sm gap-4 border pt-5 border-dashed shadow p-5 rounded-lg bg-gray-50">
+                    class="flex flex-col md:flex-row justify-between items-end mt-5 w-full text-sm md:gap-4 gap-2 border pt-5 border-dashed shadow p-5 rounded-lg bg-gray-50">
                     <div class="flex flex-col gap-1 w-full">
-                        <label for="nomor_pendaftaran">Nomor Pendaftaran</label>
+                        <label for="nomor_pendaftaran" class="text-xs md:text-sm text-center md:text-start">Nomor
+                            Pendaftaran</label>
                         <input type="text" name="nomor_pendaftaran" id="nomor_pendaftaran" required
                             placeholder="Masukkan Nomor Pendaftaran" :value="old('nomor_pendaftaran')"
-                            class="rounded-lg shadow-lg text-sm border border-gray-300" />
+                            class="rounded-lg shadow-lg md:text-sm text-xs border border-gray-300" />
                     </div>
                     <button
-                        class="bg-watercouse-600 text-white px-5 py-2 rounded-lg shadow-lg text-sm whitespace-nowrap h-[37.33px]">Cari</button>
+                        class="bg-watercouse-600 text-white px-5 py-2 rounded-lg shadow-lg text-xs md:text-sm whitespace-nowrap md:h-[37.33px] w-full md:w-min">Cari</button>
                 </fieldset>
             </form>
         </div>
         @if (session('pengaduan'))
-            <div class="bg-white rounded-lg w-full p-10 shadow-lg text-sm space-y-10">
+            <div class="bg-white rounded-lg w-full md:p-10 p-5 shadow-lg md:text-sm text-xs space-y-10">
                 <fieldset class="border border-gray-300 shadow-lg rounded-lg p-4 bg-gray-50">
                     <legend class="px-3">Identitas Pelapor</legend>
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="flex flex-col gap-1 items-start">
+                        <div class="flex flex-col gap-1 items-start col-span-2 md:col-span-1">
                             <p>Nama Lengkap</p>
                             <input type="text" disabled value="{{ session('pengaduan')->nama }}"
-                                class="text-sm w-full rounded-lg shadow-lg border-gray-300">
+                                class="md:text-sm text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
-                        <div class="flex flex-col gap-1 items-start">
+                        <div class="flex flex-col gap-1 items-start col-span-2 md:col-span-1">
                             <p>Email</p>
                             <input type="text" disabled value="{{ session('pengaduan')->email }}"
-                                class="text-sm w-full rounded-lg shadow-lg border-gray-300">
+                                class="md:text-sm text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
-                        <div class="flex flex-col gap-1 items-start">
+                        <div class="flex flex-col gap-1 items-start col-span-2 md:col-span-1">
                             <p>Nomor Hp</p>
                             <input type="text" disabled value="{{ session('pengaduan')->telepon }}"
-                                class="text-sm w-full rounded-lg shadow-lg border-gray-300">
+                                class="md:text-sm text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
-                        <div class="flex flex-col gap-1 items-start">
+                        <div class="flex flex-col gap-1 items-start col-span-2 md:col-span-1">
                             <p>Kategori Pelapor</p>
                             <input type="text" disabled
                                 value="{{ session('pengaduan')->kategori->nama_kategori }} {{ session('pengaduan')->instansi ? '(' . session('pengaduan')->instansi->nama . ')' : '' }}"
-                                class="text-sm w-full rounded-lg shadow-lg border-gray-300">
+                                class="md:text-sm text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
                         <div class="flex flex-col gap-1 items-start col-span-2">
                             <p>Alamat</p>
-                            <textarea disabled class="text-sm w-full rounded-lg shadow-lg border-gray-300">{{ session('pengaduan')->alamat }}</textarea>
+                            <textarea disabled class="md:text-sm text-xs w-full rounded-lg shadow-lg border-gray-300">{{ session('pengaduan')->alamat }}</textarea>
                         </div>
                         <div class="col-span-2 flex justify-center">
                             <a href="/storage/images/{{ session('pengaduan')->nomor_pendaftaran }}/{{ session('pengaduan')->ktp }}"
@@ -79,37 +80,91 @@
                             <p>Subjek Laporan</p>
                             <input type="text" disabled
                                 value="{{ session('pengaduan')->subjek_laporan ? session('pengaduan')->subjek_laporan->nama_subjek : null }}"
-                                class="text-sm w-full rounded-lg shadow-lg border-gray-300 capitalize">
+                                class="md:text-sm text-xs w-full rounded-lg shadow-lg border-gray-300 capitalize">
                         </div>
                         <div class="flex flex-col gap-1 items-start col-span-2">
                             <p>Lokasi Kejadian</p>
                             <input type="text" disabled value="{{ session('pengaduan')->lokasi_kejadian }}"
-                                class="text-sm w-full rounded-lg shadow-lg border-gray-300">
+                                class="md:text-sm text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
                         <div class="flex flex-col gap-1 items-start">
                             <p>Tanggal Kejadian</p>
                             <input type="date" disabled value="{{ session('pengaduan')->tanggal_kejadian }}"
-                                class="text-sm w-full rounded-lg shadow-lg border-gray-300">
+                                class="md:text-sm text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
                         <div class="flex flex-col gap-1 items-start">
                             <p>Tanggal Pelaporan</p>
-                            <input type="text" disabled value="{{ session('pengaduan')->tanggal_kejadian }}"
-                                class="text-sm w-full rounded-lg shadow-lg border-gray-300">
+                            <input type="text" disabled value="{{ session('pengaduan')->created_at }}"
+                                class="md:text-sm text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
 
                         <div class="flex flex-col gap-1 items-start col-span-2">
                             <p>Kronologi</p>
-                            <textarea disabled class="text-sm w-full rounded-lg shadow-lg border-gray-300">{{ session('pengaduan')->kronologi }}</textarea>
+                            <textarea disabled class="md:text-sm text-xs w-full rounded-lg shadow-lg border-gray-300">{{ session('pengaduan')->kronologi }}</textarea>
                         </div>
                         <div class="flex flex-col gap-1 items-start col-span-2">
                             <p>Status</p>
-                            <input type="text" disabled value="{{ session('pengaduan')->status }}"
-                                class="text-sm w-full rounded-lg shadow-lg border-gray-300">
+                            <div class="md:text-sm text-xs w-full rounded-lg shadow-lg border border-gray-300 p-3">
+                                <ul class="list-disc pl-4 space-y-4">
+                                    @if (session('pengaduan')->respon_1_status !== null)
+                                        @if (session('pengaduan')->respon_1_status == true)
+                                            <li>
+                                                <div class="flex items-center justify-between">
+                                                    <p class="font-semibold text-green-500">Laporan Pengaduan di Terima
+                                                    </p>
+                                                    <p class="text-gray-500 text-xs text-end">
+                                                        {{ \Carbon\Carbon::parse(session('pengaduan')->respon_1_tanggal)->format('d M Y h:i') }}
+                                                    </p>
+
+                                                </div>
+                                            </li>
+                                        @else
+                                            <li>
+                                                <div class="flex items-center justify-between">
+                                                    <p class="font-semibold text-red-500">Laporan Pengaduan di Tolak</p>
+                                                    <p class="text-gray-500 text-xs text-end">
+                                                        {{ \Carbon\Carbon::parse(session('pengaduan')->respon_1_tanggal)->format('d M Y h:i') }}
+                                                    </p>
+                                                </div>
+                                                <p>{{ session('pengaduan')->respon_1_keterangan }}</p>
+                                            </li>
+                                        @endif
+                                        @if (session('pengaduan')->respon_2_status == true)
+                                            <li>
+                                                <div class="flex items-center justify-between">
+                                                    <p class="font-semibold text-green-500">Laporan Pengaduan di Tindak
+                                                        Lanjuti </p>
+                                                    <p class="text-gray-500 text-xs text-end">
+                                                        {{ \Carbon\Carbon::parse(session('pengaduan')->respon_2_tanggal)->format('d M Y h:i') }}
+                                                    </p>
+
+                                                </div>
+                                            </li>
+                                        @else
+                                            <li>
+                                                <div class="flex items-center justify-between">
+                                                    <p class="font-semibold text-red-500">Laporan Pengaduan Tidak Dapat
+                                                        di Tindak
+                                                        Lanjuti</p>
+                                                    <p class="text-gray-500 text-xs text-end">
+                                                        {{ \Carbon\Carbon::parse(session('pengaduan')->respon_2_tanggal)->format('d M Y h:i') }}
+                                                    </p>
+                                                </div>
+                                                <p>{{ session('pengaduan')->respon_2_keterangan }}</p>
+                                            </li>
+                                        @endif
+                                    @else
+                                        <li>
+                                            <p>Laporan Belum di Proses</p>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </div>
                         </div>
                         @if (session('pengaduan')->status == 'Ditolak')
                             <div class="flex flex-col gap-1 items-start col-span-2">
                                 <p>Keterangan Ditolak</p>
-                                <textarea disabled class="text-sm w-full rounded-lg shadow-lg border-gray-300">{{ session('pengaduan')->keterangan_ditolak }}</textarea>
+                                <textarea disabled class="md:text-sm text-xs w-full rounded-lg shadow-lg border-gray-300">{{ session('pengaduan')->keterangan_ditolak }}</textarea>
                             </div>
                         @endif
                         <div class="col-span-2 flex justify-center">
@@ -133,3 +188,11 @@
         @endif
     </div>
 </x-guest-layout>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('textarea').forEach(function(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = (textarea.scrollHeight + 5) + 'px';
+        });
+    });
+</script>

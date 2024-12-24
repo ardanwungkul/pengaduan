@@ -63,7 +63,7 @@
     @if (session('success'))
         <div class="fixed bottom-5 left-5">
             <div id="toast-success"
-                class="flex items-center gap-2 w-min p-4 text-gray-500 bg-white rounded-lg shadow border border-green-500"
+                class="flex items-center gap-2 w-full max-w-60 md:max-w-none p-4 text-gray-500 bg-white rounded-lg shadow border border-green-500"
                 role="alert">
                 <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 bg-green-300 rounded-lg">
                     <svg viewBox="0 0 24 24" class="w-4 h-4 stroke-green-500 fill-none"
@@ -73,7 +73,7 @@
                     </svg>
                     <span class="sr-only">Fire icon</span>
                 </div>
-                <div class="ms-3 text-sm font-normal whitespace-nowrap">{{ session('success') }}
+                <div class="ms-3 md:text-sm text-xs font-normal">{{ session('success') }}
                 </div>
                 <button type="button"
                     class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8"

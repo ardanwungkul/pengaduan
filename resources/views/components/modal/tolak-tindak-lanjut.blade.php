@@ -7,7 +7,7 @@
             <!-- Modal header -->
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
                 <div class="flex flex-col text-start">
-                    <p class="text-xl font-semibold text-gray-900">
+                    <p class="md:text-xl text-base font-semibold text-gray-900">
                         Tolak Pengaduan {{ $pengaduan->nomor_pendaftaran }}
                     </p>
                 </div>
@@ -34,8 +34,9 @@
                     <input type="hidden" name="pengaduan_id" value="{{ $pengaduan->id }}">
                     <div>
                         <div class="flex flex-col gap-1">
-                            <label for="keterangan" class="text-start">Keterangan Tidak Dapat di Tindak Lanjuti</label>
-                            <textarea name="keterangan" id="keterangan" class="text-sm w-full rounded-lg shadow-lg" rows="3"
+                            <label for="keterangan" class="text-start md:text-sm text-xs">Keterangan Tidak Dapat di
+                                Tindak Lanjuti</label>
+                            <textarea name="keterangan" id="keterangan" class="md:text-sm text-xs w-full rounded-lg shadow-lg" rows="3"
                                 placeholder="Masukkan Keterangan Tidak Dapat di Tindak Lanjuti" required></textarea>
                         </div>
                     </div>
@@ -43,11 +44,11 @@
                         <button type="button" data-modal-hide="tolak-tindak-lanjut-{{ $pengaduan->id }}"
                             data-modal-target="show-detail-{{ $pengaduan->id }}"
                             data-modal-toggle="show-detail-{{ $pengaduan->id }}"
-                            class="w-1/2 bg-gray-500 rounded-lg shadow-lg text-white py-2 hover:bg-opacity-90 border border-gray-300">
+                            class="w-1/2 bg-gray-500 rounded-lg shadow-lg text-white py-2 hover:bg-opacity-90 border border-gray-300 md:text-sm text-xs">
                             Batal
                         </button>
                         <button type="submit"
-                            class="w-1/2 bg-green-500 rounded-lg shadow-lg text-white py-2 hover:bg-opacity-90 border border-gray-300">
+                            class="w-1/2 bg-green-500 rounded-lg shadow-lg text-white py-2 hover:bg-opacity-90 border border-gray-300 md:text-sm text-xs">
                             Simpan
                         </button>
                     </div>

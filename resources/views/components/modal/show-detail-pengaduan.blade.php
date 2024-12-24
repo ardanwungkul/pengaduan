@@ -6,11 +6,11 @@
         <div class="relative bg-white rounded-lg shadow">
             <!-- Modal header -->
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-                <div class="flex flex-col text-start">
-                    <p class="text-xl font-semibold text-gray-900">
+                <div class="flex flex-col text-start w-full">
+                    <p class="md:text-xl text-base font-semibold text-gray-900">
                         Detil Pengaduan
                     </p>
-                    <p>No: {{ $pengaduan->nomor_pendaftaran }}</p>
+                    <p class="md:text-base text-xs">No: {{ $pengaduan->nomor_pendaftaran }}</p>
                 </div>
                 <div class="flex gap-4 items-center justify-center">
                     {{-- Status Header --}}
@@ -22,26 +22,26 @@
                         @endif
                     @elseif ($pengaduan->respon_2_status !== null)
                         @if ($pengaduan->respon_2_status == true)
-                            <p class="text-green-500">
+                            <p class="text-green-500 md:text-base text-xs">
                                 Ditindak Lanjuti ke Penelitian
                             </p>
                         @else
-                            <p class="text-red-500">
+                            <p class="text-red-500 md:text-base text-xs">
                                 Tidak Dapat di Tindak Lanjuti
                             </p>
                         @endif
                     @elseif($pengaduan->respon_2_status == null && $pengaduan->respon_1_status !== null)
                         @if ($pengaduan->respon_1_status == true)
-                            <p class="text-green-500">
+                            <p class="text-green-500 md:text-base text-xs">
                                 Diterima
                             </p>
                         @else
-                            <p class="text-red-500">
+                            <p class="text-red-500 md:text-base text-xs">
                                 Ditolak
                             </p>
                         @endif
                     @else
-                        <p>
+                        <p class="md:text-base text-xs">
                             Belum di Proses
                         </p>
                     @endif
@@ -61,31 +61,34 @@
             <div class="p-4 space-y-4">
                 <fieldset class="border border-gray-300 shadow-lg rounded-lg p-4 bg-gray-50">
                     <legend class="px-3">Identitas Pelapor</legend>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="flex flex-col gap-1 items-start">
+                    <div class="grid grid-cols-2 gap-4 md:text-sm text-xs">
+                        <div class="flex flex-col gap-1 items-start col-span-2 md:col-span-1">
                             <p>Nama Lengkap</p>
                             <input type="text" disabled value="{{ $pengaduan->nama }}"
-                                class="text-xs w-full rounded-lg shadow-lg border-gray-300">
+                                class="md:text-sm text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
-                        <div class="flex flex-col gap-1 items-start">
+                        <div class="flex flex-col gap-1 items-start col-span-2 md:col-span-1">
                             <p>Email</p>
                             <input type="text" disabled value="{{ $pengaduan->email }}"
-                                class="text-xs w-full rounded-lg shadow-lg border-gray-300">
+                                class="md:text-sm text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
-                        <div class="flex flex-col gap-1 items-start">
+                        <div class="flex flex-col gap-1 items-start col-span-2 md:col-span-1">
                             <p>Nomor Hp</p>
                             <input type="text" disabled value="{{ $pengaduan->telepon }}"
-                                class="text-xs w-full rounded-lg shadow-lg border-gray-300">
+                                class="md:text-sm text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
-                        <div class="flex flex-col gap-1 items-start">
+                        <div class="flex flex-col gap-1 items-start col-span-2 md:col-span-1">
                             <p>Kategori Pelapor</p>
-                            <input type="text" disabled
-                                value="{{ $pengaduan->kategori->nama_kategori }} {{ $pengaduan->instansi ? '(' . $pengaduan->instansi->nama . ')' : '' }}"
-                                class="text-xs w-full rounded-lg shadow-lg border-gray-300">
+                            <p class="md:text-sm text-xs w-full rounded-lg shadow-lg border border-gray-300 py-2 px-3">
+                                {{ $pengaduan->kategori->nama_kategori }}
+                                {{ $pengaduan->instansi ? '(' . $pengaduan->instansi->nama . ')' : '' }}
+                            </p>
                         </div>
                         <div class="flex flex-col gap-1 items-start col-span-2">
                             <p>Alamat</p>
-                            <textarea disabled class="text-xs w-full rounded-lg shadow-lg border-gray-300">{{ $pengaduan->alamat }}</textarea>
+                            <p class="md:text-sm text-xs w-full rounded-lg shadow-lg border border-gray-300 py-2 px-3">
+                                {{ $pengaduan->alamat }}
+                            </p>
                         </div>
                         <div class="col-span-2 flex justify-center">
                             <a href="/storage/images/{{ $pengaduan->nomor_pendaftaran }}/{{ $pengaduan->ktp }}"
@@ -112,32 +115,34 @@
                 </fieldset>
                 <fieldset class="border border-gray-300 shadow-lg rounded-lg p-4 bg-gray-50">
                     <legend class="px-3">Laporan</legend>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-2 gap-4 md:text-sm text-xs">
                         <div class="flex flex-col gap-1 items-start col-span-2">
                             <p>Jenis Pengaduan</p>
-                            <input type="text" disabled
-                                value="{{ $pengaduan->subjek_laporan ? $pengaduan->subjek_laporan->nama_subjek : null }}"
-                                class="text-xs w-full rounded-lg shadow-lg border-gray-300 capitalize">
+                            <p class="md:text-sm text-xs w-full rounded-lg shadow-lg border border-gray-300 py-2 px-3">
+                                {{ $pengaduan->subjek_laporan ? $pengaduan->subjek_laporan->nama_subjek : null }}
+                            </p>
                         </div>
                         <div class="flex flex-col gap-1 items-start col-span-2">
                             <p>Lokasi Kejadian</p>
                             <input type="text" disabled value="{{ $pengaduan->lokasi_kejadian }}"
-                                class="text-xs w-full rounded-lg shadow-lg border-gray-300">
+                                class="md:text-sm text-xs w-full rounded-lg shadow-lg border-gray-300">
                         </div>
                         <div class="flex flex-col gap-1 items-start">
                             <p>Tanggal Kejadian</p>
-                            <input type="date" disabled value="{{ $pengaduan->tanggal_kejadian }}"
-                                class="text-xs w-full rounded-lg shadow-lg border-gray-300">
+                            <p class="md:text-sm text-xs w-full rounded-lg shadow-lg border border-gray-300 py-2 px-3">
+                                {{ \Carbon\Carbon::parse($pengaduan->tanggal_kejadian)->format('d M Y') }}
+                            </p>
                         </div>
                         <div class="flex flex-col gap-1 items-start">
                             <p>Tanggal Pelaporan</p>
-                            <input type="text" disabled value="{{ $pengaduan->tanggal_kejadian }}"
-                                class="text-xs w-full rounded-lg shadow-lg border-gray-300">
+                            <p class="md:text-sm text-xs w-full rounded-lg shadow-lg border border-gray-300 py-2 px-3">
+                                {{ \Carbon\Carbon::parse($pengaduan->created_at)->format('d M Y') }}
+                            </p>
                         </div>
 
                         <div class="flex flex-col gap-1 items-start col-span-2">
                             <p>Kronologi</p>
-                            <textarea disabled class="text-xs w-full rounded-lg shadow-lg border-gray-300">{{ $pengaduan->kronologi }}</textarea>
+                            <textarea disabled class="md:text-sm text-xs w-full rounded-lg shadow-lg border-gray-300">{{ $pengaduan->kronologi }}</textarea>
                         </div>
                         <div class="flex flex-col gap-1 items-start col-span-2">
                             <p>Status</p>
@@ -183,7 +188,7 @@
                         @if ($pengaduan->respon_1_status !== null && $pengaduan->respon_1_status == false)
                             <div class="flex flex-col gap-1 items-start col-span-2">
                                 <p>Keterangan Ditolak</p>
-                                <textarea disabled class="text-xs w-full rounded-lg shadow-lg border-gray-300">{{ $pengaduan->respon_1_keterangan }}</textarea>
+                                <textarea disabled class="md:text-sm text-xs w-full rounded-lg shadow-lg border-gray-300">{{ $pengaduan->respon_1_keterangan }}</textarea>
                             </div>
                         @endif
                         <div class="col-span-2 flex justify-center">
@@ -220,7 +225,7 @@
                             <button data-modal-hide="show-detail-{{ $pengaduan->id }}"
                                 data-modal-target="tolak-tindak-lanjut-{{ $pengaduan->id }}"
                                 data-modal-toggle="tolak-tindak-lanjut-{{ $pengaduan->id }}" type="button"
-                                class="w-full bg-red-500 rounded-lg shadow-lg text-white py-2 hover:bg-opacity-90 border border-gray-300">
+                                class="w-full bg-red-500 rounded-lg shadow-lg text-white py-2 hover:bg-opacity-90 border border-gray-300 md:text-sm text-xs">
                                 Tidak Dapat di Tinjak Lanjuti
                             </button>
                             <form action="{{ route('pengaduan.status') }}" method="POST" class="w-full">
@@ -230,7 +235,8 @@
                                 <input type="hidden" name="status" value="true">
                                 <input type="hidden" name="pengaduan_id" value="{{ $pengaduan->id }}">
                                 <button type="submit"
-                                    class="w-full bg-green-500 rounded-lg shadow-lg text-white py-2 hover:bg-opacity-90 border border-gray-300">
+                                    class="h-full
+                                     w-full bg-green-500 rounded-lg shadow-lg text-white py-2 hover:bg-opacity-90 border border-gray-300 md:text-sm text-xs">
                                     Tindak Lanjut
                                 </button>
                             </form>

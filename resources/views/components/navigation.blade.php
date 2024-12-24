@@ -88,6 +88,14 @@
                     </button>
                     <div class="py-4 overflow-y-auto">
                         <ul class="space-y-2 font-medium">
+                            @if (Auth::user() && Auth::user()->role !== 'user')
+                                <li>
+                                    <a href="{{ route('dashboard') }}"
+                                        class="p-2 text-gray-900 rounded-lg block w-full text-start">
+                                        <p>Dashboard</p>
+                                    </a>
+                                </li>
+                            @endif
                             <li>
                                 <a href="{{ route('laporan.track') }}"
                                     class="p-2 text-gray-900 rounded-lg block w-full text-start">

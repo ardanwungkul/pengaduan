@@ -47,7 +47,7 @@
                         Pelanggaran yang bisa Anda laporkan
                     </p>
                     <div
-                        class="grid grid-cols-4 max-w-6xl mx-auto px-5 pt-5 text-center gap-y-5 gap-x-3 place-items-start place-content-center">
+                        class="grid lg:grid-cols-4 grid-cols-2 max-w-6xl mx-auto px-5 pt-5 text-center gap-y-5 gap-x-3 place-items-start place-content-center">
                         <div class="flex justify-center items-center flex-col gap-2 w-full">
                             <div
                                 class="rounded-full flex items-center justify-center aspect-square p-5 shadow-lg bg-watercouse-500 border-2 border-watercouse-400">

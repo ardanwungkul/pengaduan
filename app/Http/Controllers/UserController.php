@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -65,9 +66,22 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => [
+                'required',
+                Rule::unique('users', 'email')->ignore($user->id),
+            ]
+        ]);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->has('password') && $request->password !== null) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+        return redirect()->back()->with(['success' => 'Berhasil Mengubah Pengguna']);
     }
 
     /**

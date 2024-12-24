@@ -77,7 +77,7 @@
                                 </svg>
                                 <span class="sr-only">Fire icon</span>
                             </div>
-                            <div class="ms-3 text-sm font-normal whitespace-nowrap">{{ session('success') }}
+                            <div class="ms-3 md:text-sm text-xs font-normal whitespace-nowrap">{{ session('success') }}
                             </div>
                             <button type="button"
                                 class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8"

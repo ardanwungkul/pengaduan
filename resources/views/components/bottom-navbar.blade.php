@@ -1,5 +1,5 @@
 <div
-    class="lg:hidden fixed bottom-0 left-0 z-50 grid w-full h-16 grid-cols-1 px-8 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
+    class="lg:hidden fixed bottom-0 left-0 z-40 grid w-full h-16 grid-cols-1 px-8 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
     <div class="flex items-center justify-center mx-auto">
         <button data-tooltip-target="tooltip-dashboard" type="button"
             onclick="window.location.href='{{ route('dashboard') }}'"

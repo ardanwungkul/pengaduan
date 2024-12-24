@@ -79,12 +79,22 @@ html::-webkit-scrollbar {
 .invisible-scrollbar::-webkit-scrollbar {
     display: none;
 }
+
+@media only screen and (max-width: 768px) {
+    .dt-input,
+    .dt-search {
+        width: 100%;
+    }
+    .dt-buttons {
+        top: -90px !important;
+    }
+}
 .dt-search {
     position: absolute !important;
     top: -50px;
     overflow: visible;
     right: 0;
-    z-index: 99999;
+    z-index: 10;
     margin-bottom: 0px !important;
 }
 .dt-buttons {
@@ -112,4 +122,11 @@ div.dt-container.dt-empty-footer tbody > tr:last-child > * {
 .dt-input {
     font-size: 12px !important;
     border-radius: 0.5rem !important;
+}
+.dtr-details {
+    width: 100%;
+    background-color: aliceblue;
+    border: 1px solid gray;
+    padding: 5px !important;
+    border-radius: 8px;
 }

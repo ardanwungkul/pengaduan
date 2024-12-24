@@ -20,10 +20,10 @@
 </head>
 
 <body class="font-sans text-gray-900 antialiased">
-    <div class="h-screen w-full md:p-20 bg-jar-auth flex items-center justify-center relative">
+    <div class="h-screen w-full md:p-20 bg-jar-auth flex items-center justify-center relative px-5 md:px-0">
         <div class="absolute bg-black w-full h-full top-0 opacity-45"></div>
         <div
-            class="md:grid grid-cols-3 rounded-3xl overflow-hidden md:min-w-[671px] max-w-2xl shadow-lg border border-watercouse-600 z-10 h-full max-h-[500px] min-h-[420px]">
+            class="md:grid grid-cols-3 rounded-3xl overflow-hidden md:min-w-[671px] max-w-2xl shadow-lg border border-watercouse-600 z-10 md:h-full md:max-h-[500px] md:min-h-[420px]">
 
             <div
                 class="col-span-1 hidden md:block group bg-gradient-to-b from-watercouse-500 via-watercouse-600 to-watercouse-700 hover:!bg-opacity-50">

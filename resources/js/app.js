@@ -11,6 +11,8 @@ import "datatables.net-buttons-dt/css/buttons.dataTables.min.css";
 import "datatables.net-buttons/js/buttons.colVis.mjs";
 import "datatables.net-buttons/js/buttons.html5.mjs";
 import "datatables.net-buttons/js/buttons.print.mjs";
+import "datatables.net-responsive-dt";
+import "datatables.net-responsive-dt/css/responsive.dataTables.min.css";
 import jquery from "jquery";
 window.$ = jquery;
 window.JSZip = jszip;
